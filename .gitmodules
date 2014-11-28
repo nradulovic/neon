@@ -4,3 +4,6 @@
 [submodule "kernel"]
 	path = kernel
 	url = https://github.com/nradulovic/neon-kernel.git
+[submodule "lib"]
+	path = lib
+	url = https://github.com/nradulovic/neon-lib.git
