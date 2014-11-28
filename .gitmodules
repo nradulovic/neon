@@ -1,3 +1,6 @@
 [submodule "base"]
 	path = base
 	url = https://github.com/nradulovic/neon-base.git
+[submodule "kernel"]
+	path = kernel
+	url = https://github.com/nradulovic/neon-kernel.git
