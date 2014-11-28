@@ -10,3 +10,6 @@
 [submodule "drivers"]
 	path = drivers
 	url = https://github.com/nradulovic/neon-drivers.git
+[submodule "timer"]
+	path = timer
+	url = https://github.com/nradulovic/neon-timer.git
