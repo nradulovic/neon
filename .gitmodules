@@ -16,3 +16,6 @@
 [submodule "mem"]
 	path = mem
 	url = https://github.com/nradulovic/neon-mem.git
+[submodule "eds"]
+	path = eds
+	url = https://github.com/nradulovic/neon-eds.git
