@@ -1,0 +1,670 @@
+.TH "Implementation" 3 "Sat Nov 23 2013" "Version 1.0BetaR01" "eSolid - Memory Management" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+Implementation \- 
+.SS "Data Structures"
+
+.in +1c
+.ti -1c
+.RI "struct \fBpMemBlock\fP"
+.br
+.RI "\fIPool allocator header structure\&. \fP"
+.in -1c
+.SS "Macros"
+
+.in +1c
+.ti -1c
+.RI "#define \fBSMEM_SIGNATURE\fP   ((portReg_T)0xDEADBEEDU)"
+.br
+.RI "\fISignature for static memory manager\&. \fP"
+.ti -1c
+.RI "#define \fBPMEM_SIGNATURE\fP   ((portReg_T)0xDEADBEEEU)"
+.br
+.RI "\fISignature for pool memory manager\&. \fP"
+.ti -1c
+.RI "#define \fBDMEM_SIGNATURE\fP   ((portReg_T)0xDEADBEEFU)"
+.br
+.RI "\fISignature for dynamic memory manager\&. \fP"
+.in -1c
+.SS "Typedefs"
+
+.in +1c
+.ti -1c
+.RI "typedef struct dMemBlock \fBdMemBlock_T\fP"
+.br
+.RI "\fIDynamic allocator memory block header type\&. \fP"
+.ti -1c
+.RI "typedef struct \fBpMemBlock\fP \fBpMemBlock_T\fP"
+.br
+.RI "\fIPool allocator header type\&. \fP"
+.in -1c
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "struct \fBPORT_C_ALIGN\fP (PORT_DEF_DATA_ALIGNMENT)"
+.br
+.RI "\fIDynamic allocator memory block header structure\&. \fP"
+.ti -1c
+.RI "\fBDECL_MODULE_INFO\fP ('MEM','Memory management','Nenad Radulovic')"
+.br
+.RI "\fIModule information\&. \fP"
+.ti -1c
+.RI "void \fBesSMemInit\fP (\fBesSMemHandle_T\fP *handle, void *storage, size_t storageSize)"
+.br
+.RI "\fIInitializes static memory instance\&. \fP"
+.ti -1c
+.RI "void * \fBesSMemAllocI\fP (\fBesSMemHandle_T\fP *handle, size_t size)"
+.br
+.RI "\fIAllocates static memory of size \fCsize\fP\&. \fP"
+.ti -1c
+.RI "void * \fBesSMemAlloc\fP (\fBesSMemHandle_T\fP *handle, size_t size)"
+.br
+.RI "\fIAllocates static memory of size \fCsize\fP\&. \fP"
+.ti -1c
+.RI "void \fBesSMemUpdateStatusI\fP (\fBesSMemHandle_T\fP *handle, \fBesMemStatus_T\fP *status)"
+.br
+.RI "\fIReturns various information about given memory instance\&. \fP"
+.ti -1c
+.RI "void \fBesSMemUpdateStatus\fP (\fBesSMemHandle_T\fP *handle, \fBesMemStatus_T\fP *status)"
+.br
+.RI "\fIReturns various information about given memory instance\&. \fP"
+.ti -1c
+.RI "void \fBesPMemInit\fP (\fBesPMemHandle_T\fP *handle, void *array, size_t arraySize, size_t blockSize)"
+.br
+.RI "\fIInitializes pool memory instance\&. \fP"
+.ti -1c
+.RI "size_t \fBesPMemCalcPoolSize\fP (size_t blocks, size_t blockSize)"
+.br
+.RI "\fICalculates required reserved memory size for defined number of blocks\&. \fP"
+.ti -1c
+.RI "void * \fBesPMemAllocI\fP (\fBesPMemHandle_T\fP *handle)"
+.br
+.RI "\fIAllocate one block from memory pool\&. \fP"
+.ti -1c
+.RI "void * \fBesPMemAlloc\fP (\fBesPMemHandle_T\fP *handle)"
+.br
+.RI "\fIAllocate one block from memory pool\&. \fP"
+.ti -1c
+.RI "void \fBesPMemDeAllocI\fP (\fBesPMemHandle_T\fP *handle, void *mem)"
+.br
+.RI "\fIOslobadja prethodno alocirani blok\&. \fP"
+.ti -1c
+.RI "void \fBesPMemDeAlloc\fP (\fBesPMemHandle_T\fP *handle, void *mem)"
+.br
+.RI "\fIOslobadja prethodno alocirani blok\&. \fP"
+.ti -1c
+.RI "void \fBesPMemUpdateStatusI\fP (\fBesPMemHandle_T\fP *handle, \fBesMemStatus_T\fP *status)"
+.br
+.RI "\fIVraca statusne informacije pool memorije\&. \fP"
+.ti -1c
+.RI "void \fBesPMemUpdateStatus\fP (\fBesPMemHandle_T\fP *handle, \fBesMemStatus_T\fP *status)"
+.br
+.RI "\fIVraca statusne informacije pool memorije\&. \fP"
+.ti -1c
+.RI "void \fBesDMemInit\fP (\fBesDMemHandle_T\fP *handle, void *storage, size_t storageSize)"
+.br
+.RI "\fIInicijalizuje dinamican memorijski alokator\&. \fP"
+.ti -1c
+.RI "void * \fBesDMemAllocI\fP (\fBesDMemHandle_T\fP *handle, size_t size)"
+.br
+.RI "\fIDodeljuje memorijski prostor velicine \fCsize\fP\&. \fP"
+.ti -1c
+.RI "void * \fBesDMemAlloc\fP (\fBesDMemHandle_T\fP *handle, size_t size)"
+.br
+.RI "\fIDodeljuje memorijski prostor velicine \fCsize\fP\&. \fP"
+.ti -1c
+.RI "void \fBesDMemDeAllocI\fP (\fBesDMemHandle_T\fP *handle, void *mem)"
+.br
+.RI "\fIReciklira memorijski prostor na koji pokazije \fCmem\fP pokazivac\&. \fP"
+.ti -1c
+.RI "void \fBesDMemDeAlloc\fP (\fBesDMemHandle_T\fP *handle, void *mem)"
+.br
+.RI "\fIReciklira memorijski prostor na koji pokazije \fCmem\fP pokazivac\&. \fP"
+.ti -1c
+.RI "void \fBesDMemUpdateStatusI\fP (\fBesDMemHandle_T\fP *handle, \fBesMemStatus_T\fP *status)"
+.br
+.RI "\fIVraca velicinu trenutno slobodne memorije u bajtovima\&. \fP"
+.ti -1c
+.RI "void \fBesDMemUpdateStatus\fP (\fBesDMemHandle_T\fP *handle, \fBesMemStatus_T\fP *status)"
+.br
+.RI "\fIVraca velicinu trenutno slobodne memorije u bajtovima\&. \fP"
+.in -1c
+.SS "Variables"
+
+.in +1c
+.ti -1c
+.RI "\fBesSMemHandle_T\fP \fBDefSMemHandle\fP"
+.br
+.RI "\fIDefault static memory handle\&. \fP"
+.ti -1c
+.RI "\fBesPMemHandle_T\fP \fBDefPMemHandle\fP"
+.br
+.RI "\fIDefault pool memory handle\&. \fP"
+.ti -1c
+.RI "\fBesDMemHandle_T\fP \fBDefDMemHandle\fP"
+.br
+.RI "\fIDefault dynamic memory handle\&. \fP"
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SH "Macro Definition Documentation"
+.PP 
+.SS "#define SMEM_SIGNATURE   ((portReg_T)0xDEADBEEDU)"
+
+.PP
+Signature for static memory manager\&. 
+.SS "#define PMEM_SIGNATURE   ((portReg_T)0xDEADBEEEU)"
+
+.PP
+Signature for pool memory manager\&. 
+.SS "#define DMEM_SIGNATURE   ((portReg_T)0xDEADBEEFU)"
+
+.PP
+Signature for dynamic memory manager\&. 
+.SH "Typedef Documentation"
+.PP 
+.SS "typedef struct dMemBlock \fBdMemBlock_T\fP"
+
+.PP
+Dynamic allocator memory block header type\&. 
+.SS "typedef struct \fBpMemBlock\fP \fBpMemBlock_T\fP"
+
+.PP
+Pool allocator header type\&. 
+.SH "Function Documentation"
+.PP 
+.SS "struct PORT_C_ALIGN (PORT_DEF_DATA_ALIGNMENT)"
+
+.PP
+Dynamic allocator memory block header structure\&. <Block size (including header)
+.PP
+<Previous block in linked list
+.PP
+<Next free block in linked list
+.PP
+<Previous free block in linked list 
+.SS "DECL_MODULE_INFO ('MEM', 'Memory management', 'Nenad Radulovic')"
+
+.PP
+Module information\&. 
+.SS "void esSMemInit (\fBesSMemHandle_T\fP *handle, void *storage, size_tstorageSize)"
+
+.PP
+Initializes static memory instance\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIhandle\fP Pointer to handle type variable, see \fBesSMemHandle_T\fP\&. 
+.br
+\fIstorage\fP Storage memory reserved for static memory manager\&. 
+.br
+\fIstorageSize\fP Size of reserved memory expresses in bytes\&.
+.RE
+.PP
+This function shall be called before any other static memory management function\&. 
+.PP
+\fBObject class:\fP
+.RS 4
+Regular \fBAPI\fP object, this object is part of the application programming interface\&. 
+.RE
+.PP
+
+.SS "void* esSMemAllocI (\fBesSMemHandle_T\fP *handle, size_tsize)"
+
+.PP
+Allocates static memory of size \fCsize\fP\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIhandle\fP Pointer to static memory instance, see \fBesSMemHandle_T\fP\&. 
+.br
+\fIsize\fP The size of requested memory in bytes\&. 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+Pointer to free memory of requested size\&. 
+.RE
+.PP
+\fBFunction class:\fP
+.RS 4
+\fBI class\fP, Interrupt-lock API function, this function can be called only from interrupts locked code sections\&. 
+.RE
+.PP
+
+.SS "void* esSMemAlloc (\fBesSMemHandle_T\fP *handle, size_tsize)"
+
+.PP
+Allocates static memory of size \fCsize\fP\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIhandle\fP Pointer to static memory instance, see \fBesSMemHandle_T\fP\&. 
+.br
+\fIsize\fP The size of requested memory in bytes\&. 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+Pointer to free memory of requested size\&. 
+.RE
+.PP
+\fBObject class:\fP
+.RS 4
+Regular \fBAPI\fP object, this object is part of the application programming interface\&. 
+.RE
+.PP
+
+.SS "void esSMemUpdateStatusI (\fBesSMemHandle_T\fP *handle, \fBesMemStatus_T\fP *status)"
+
+.PP
+Returns various information about given memory instance\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIhandle\fP Pointer to static memory instance, see \fBesSMemHandle_T\fP\&. 
+.br
+\fIstatus\fP Pointer to memory status type, see \fBesMemStatus_T\fP\&. 
+.RE
+.PP
+\fBFunction class:\fP
+.RS 4
+\fBI class\fP, Interrupt-lock API function, this function can be called only from interrupts locked code sections\&. 
+.RE
+.PP
+
+.SS "void esSMemUpdateStatus (\fBesSMemHandle_T\fP *handle, \fBesMemStatus_T\fP *status)"
+
+.PP
+Returns various information about given memory instance\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIhandle\fP Pointer to static memory instance, see \fBesSMemHandle_T\fP\&. 
+.br
+\fIstatus\fP Pointer to memory status type, see \fBesMemStatus_T\fP\&. 
+.RE
+.PP
+\fBObject class:\fP
+.RS 4
+Regular \fBAPI\fP object, this object is part of the application programming interface\&. 
+.RE
+.PP
+
+.SS "void esPMemInit (\fBesPMemHandle_T\fP *handle, void *pool, size_tpoolSize, size_tblockSize)"
+
+.PP
+Initializes pool memory instance\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIhandle\fP Pointer to pool memory instance, see \fBesPMemHandle_T\fP\&. 
+.br
+\fIpool\fP Reserved memory area for pool allocator\&. 
+.br
+\fIpoolSize\fP The size of reserved memory area expressed in bytes\&. 
+.br
+\fIblockSize\fP The size of one block expressed in bytes\&.
+.RE
+.PP
+This function must be called before any call to \fBesPMemAllocI()\fP or \fBesPMemAlloc()\fP\&. 
+.PP
+\fBWarning:\fP
+.RS 4
+Pointers to \fChandle\fP and \fCpool\fP must be aligned to CPU defined alignment\&. 
+.RE
+.PP
+\fBObject class:\fP
+.RS 4
+Regular \fBAPI\fP object, this object is part of the application programming interface\&. 
+.RE
+.PP
+
+.SS "size_t esPMemCalcPoolSize (size_tblocks, size_tblockSize)"
+
+.PP
+Calculates required reserved memory size for defined number of blocks\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIblocks\fP Number of required blocks\&. 
+.br
+\fIblockSize\fP The size of one block\&. 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+Required reserved memory size\&. 
+.RE
+.PP
+\fBObject class:\fP
+.RS 4
+Regular \fBAPI\fP object, this object is part of the application programming interface\&. 
+.RE
+.PP
+
+.SS "void* esPMemAllocI (\fBesPMemHandle_T\fP *handle)"
+
+.PP
+Allocate one block from memory pool\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIhandle\fP Pointer to pool memory instance, see \fBesPMemHandle_T\fP\&. 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+Pointer to requested block\&. 
+.RE
+.PP
+\fBFunction class:\fP
+.RS 4
+\fBI class\fP, Interrupt-lock API function, this function can be called only from interrupts locked code sections\&. 
+.RE
+.PP
+
+.SS "void* esPMemAlloc (\fBesPMemHandle_T\fP *handle)"
+
+.PP
+Allocate one block from memory pool\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIhandle\fP Pointer to pool memory instance, see \fBesPMemHandle_T\fP\&. 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+Pointer to requested block\&. 
+.RE
+.PP
+\fBObject class:\fP
+.RS 4
+Regular \fBAPI\fP object, this object is part of the application programming interface\&. 
+.RE
+.PP
+
+.SS "void esPMemDeAllocI (\fBesPMemHandle_T\fP *handle, void *mem)"
+
+.PP
+Oslobadja prethodno alocirani blok\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIhandle\fP Deskriptor pool alokatora 
+.br
+\fImem\fP Prethodno alociran blok memorije 
+.RE
+.PP
+\fBFunction class:\fP
+.RS 4
+\fBI class\fP, Interrupt-lock API function, this function can be called only from interrupts locked code sections\&. 
+.RE
+.PP
+
+.SS "void esPMemDeAlloc (\fBesPMemHandle_T\fP *handle, void *mem)"
+
+.PP
+Oslobadja prethodno alocirani blok\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIhandle\fP Deskriptor pool alokatora 
+.br
+\fImem\fP Prethodno alociran blok memorije 
+.RE
+.PP
+\fBNote:\fP
+.RS 4
+Funkcija koristi makroe \fBOPT_GUARD_LOCK\fP i \fBOPT_GUARD_UNLOCK\fP za zastitu memorije od istovremenog pristupa\&. 
+.RE
+.PP
+\fBObject class:\fP
+.RS 4
+Regular \fBAPI\fP object, this object is part of the application programming interface\&. 
+.RE
+.PP
+
+.SS "void esPMemUpdateStatusI (\fBesPMemHandle_T\fP *handle, \fBesMemStatus_T\fP *status)"
+
+.PP
+Vraca statusne informacije pool memorije\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIhandle\fP Deskriptor pool alokatora 
+.br
+\fIstatus\fP Status struktura pool alokatora 
+.RE
+.PP
+\fBFunction class:\fP
+.RS 4
+\fBI class\fP, Interrupt-lock API function, this function can be called only from interrupts locked code sections\&. 
+.RE
+.PP
+
+.SS "void esPMemUpdateStatus (\fBesPMemHandle_T\fP *handle, \fBesMemStatus_T\fP *status)"
+
+.PP
+Vraca statusne informacije pool memorije\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIhandle\fP Deskriptor pool alokatora 
+.br
+\fIstatus\fP Status struktura pool alokatora 
+.RE
+.PP
+\fBObject class:\fP
+.RS 4
+Regular \fBAPI\fP object, this object is part of the application programming interface\&. 
+.RE
+.PP
+
+.SS "void esDMemInit (\fBesDMemHandle_T\fP *handle, void *storage, size_tstorageSize)"
+
+.PP
+Inicijalizuje dinamican memorijski alokator\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIhandle\fP Deskriptor dinamickog alokatora 
+.br
+\fIstorage\fP Predefinisani memorijski prostor koji se predaje dinamickom alokatoru na koriscenje 
+.br
+\fIstorageSize\fP Velicina memorijskog prostora u bajtovima
+.RE
+.PP
+Ova funkcija se mora pozvati pre koriscenja funkcija dinamickog memorijskog alokatora\&. 
+.PP
+\fBWarning:\fP
+.RS 4
+Funkcija zahteva da pokazivaci handle i pool budu poravnani (aligned)\&. Ukoliko se koriste eSolid alokatori za instaciranje \fChandle\fP strukture i \fCpoolStorage\fP onda je poravnani pristup osiguran\&. 
+.PP
+Funkcija zahteva da velicina memorijskog prostora \fCstorageSize\fP bude poravnana (aligned)\&. Na primer za 32-bitni procesor (poravnanje 4 bajta): ako je \fCstorageSize\fP == 313 onda je potrebno poravnati na sledecu vecu vrednost koja je deljiva sa 4, u ovom slucaju ce to biti 316\&. 
+.RE
+.PP
+\fBObject class:\fP
+.RS 4
+Regular \fBAPI\fP object, this object is part of the application programming interface\&. 
+.RE
+.PP
+
+.SS "void* esDMemAllocI (\fBesDMemHandle_T\fP *handle, size_tsize)"
+
+.PP
+Dodeljuje memorijski prostor velicine \fCsize\fP\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIhandle\fP Deskriptor dinamickog alokatora 
+.br
+\fIsize\fP Velicina zahtevanog memorijskog prostora u bajtovima\&. 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+Pokazivac na rezervisani memorijski blok\&.
+.RE
+.PP
+U debug rezimu ova funkcija uvek vraca pokazivac, odnosno, ne moze se desiti da vrati NULL pokazivac, kao sto nalaze standardna implementacija \fCmalloc\fP C funkcije\&. Ukoliko se zahtevana memorija ne moze dobaviti generisace se ASSERT greska\&. Kada se ne koristi debug rezim funkcija se ponasa u skladu sa standardom\&. 
+.PP
+\fBFunction class:\fP
+.RS 4
+\fBI class\fP, Interrupt-lock API function, this function can be called only from interrupts locked code sections\&. 
+.RE
+.PP
+
+.SS "void* esDMemAlloc (\fBesDMemHandle_T\fP *handle, size_tsize)"
+
+.PP
+Dodeljuje memorijski prostor velicine \fCsize\fP\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIhandle\fP Deskriptor dinamickog alokatora 
+.br
+\fIsize\fP Velicina zahtevanog memorijskog prostora u bajtovima\&. 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+Pokazivac na rezervisani memorijski blok\&.
+.RE
+.PP
+U debug rezimu ova funkcija uvek vraca pokazivac, odnosno, ne moze se desiti da vrati NULL pokazivac, kao sto nalaze standardna implementacija \fCmalloc\fP C funkcije\&. Ukoliko se zahtevana memorija ne moze dobaviti generisace se ASSERT greska\&. Kada se ne koristi debug rezim funkcija se ponasa u skladu sa standardom\&. 
+.PP
+\fBNote:\fP
+.RS 4
+Funkcija koristi makroe \fBOPT_GUARD_LOCK\fP i \fBOPT_GUARD_UNLOCK\fP za zastitu memorije od istovremenog pristupa\&. 
+.RE
+.PP
+\fBObject class:\fP
+.RS 4
+Regular \fBAPI\fP object, this object is part of the application programming interface\&. 
+.RE
+.PP
+
+.SS "void esDMemDeAllocI (\fBesDMemHandle_T\fP *handle, void *mem)"
+
+.PP
+Reciklira memorijski prostor na koji pokazije \fCmem\fP pokazivac\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIhandle\fP Deskriptor dinamickog alokatora 
+.br
+\fImem\fP Pokazivac na prethodno dodeljen memorijski prostor\&. 
+.RE
+.PP
+\fBFunction class:\fP
+.RS 4
+\fBI class\fP, Interrupt-lock API function, this function can be called only from interrupts locked code sections\&. 
+.RE
+.PP
+
+.SS "void esDMemDeAlloc (\fBesDMemHandle_T\fP *handle, void *mem)"
+
+.PP
+Reciklira memorijski prostor na koji pokazije \fCmem\fP pokazivac\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIhandle\fP Deskriptor dinamickog alokatora 
+.br
+\fImem\fP Pokazivac na prethodno dodeljen memorijski prostor\&. 
+.RE
+.PP
+\fBNote:\fP
+.RS 4
+Funkcija koristi makroe \fBOPT_GUARD_LOCK\fP i \fBOPT_GUARD_UNLOCK\fP za zastitu memorije od istovremenog pristupa\&. 
+.RE
+.PP
+\fBObject class:\fP
+.RS 4
+Regular \fBAPI\fP object, this object is part of the application programming interface\&. 
+.RE
+.PP
+
+.SS "void esDMemUpdateStatusI (\fBesDMemHandle_T\fP *handle, \fBesMemStatus_T\fP *status)"
+
+.PP
+Vraca velicinu trenutno slobodne memorije u bajtovima\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIhandle\fP Deskriptor dinamickog alokatora 
+.br
+\fIstatus\fP Status struktura dinamickog alokatora
+.RE
+.PP
+Ukoliko je memorija jako fragmenitisana, sto je karakteristicno za first fir algoritam, moze se desiti da postoji dovoljno slobodne memorije, ali ne i bloka zahtevane velicine\&. U tom slucaju memorijski alokator nece biti u mogucnosti da ispuni zahtev\&. 
+.PP
+\fBFunction class:\fP
+.RS 4
+\fBI class\fP, Interrupt-lock API function, this function can be called only from interrupts locked code sections\&. 
+.RE
+.PP
+
+.SS "void esDMemUpdateStatus (\fBesDMemHandle_T\fP *handle, \fBesMemStatus_T\fP *status)"
+
+.PP
+Vraca velicinu trenutno slobodne memorije u bajtovima\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIhandle\fP Deskriptor dinamickog alokatora 
+.br
+\fIstatus\fP Status struktura dinamickog alokatora
+.RE
+.PP
+Ukoliko je memorija jako fragmenitisana, sto je karakteristicno za first fir algoritam, moze se desiti da postoji dovoljno slobodne memorije, ali ne i bloka zahtevane velicine\&. U tom slucaju memorijski alokator nece biti u mogucnosti da ispuni zahtev\&. 
+.PP
+\fBObject class:\fP
+.RS 4
+Regular \fBAPI\fP object, this object is part of the application programming interface\&. 
+.RE
+.PP
+
+.SH "Variable Documentation"
+.PP 
+.SS "\fBesSMemHandle_T\fP DefSMemHandle"
+
+.PP
+Default static memory handle\&. 
+.PP
+\fBObject class:\fP
+.RS 4
+Regular \fBAPI\fP object, this object is part of the application programming interface\&. 
+.RE
+.PP
+
+.SS "\fBesPMemHandle_T\fP DefPMemHandle"
+
+.PP
+Default pool memory handle\&. 
+.PP
+\fBObject class:\fP
+.RS 4
+Regular \fBAPI\fP object, this object is part of the application programming interface\&. 
+.RE
+.PP
+
+.SS "\fBesDMemHandle_T\fP DefDMemHandle"
+
+.PP
+Default dynamic memory handle\&. 
+.PP
+\fBObject class:\fP
+.RS 4
+Regular \fBAPI\fP object, this object is part of the application programming interface\&. 
+.RE
+.PP
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for eSolid - Memory Management from the source code\&.

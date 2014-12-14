@@ -1,0 +1,178 @@
+.TH "mem.c" 3 "Sat Nov 23 2013" "Version 1.0BetaR01" "eSolid - Memory Management" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+mem.c \- 
+Memory Management Implementation\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+\fC#include 'kernel/lock\&.h'\fP
+.br
+\fC#include 'kernel/bitop\&.h'\fP
+.br
+\fC#include 'mem/mem\&.h'\fP
+.br
+\fC#include 'arch/cpu\&.h'\fP
+.br
+
+.SS "Data Structures"
+
+.in +1c
+.ti -1c
+.RI "struct \fBpMemBlock\fP"
+.br
+.RI "\fIPool allocator header structure\&. \fP"
+.in -1c
+.SS "Macros"
+
+.in +1c
+.ti -1c
+.RI "#define \fBSMEM_SIGNATURE\fP   ((portReg_T)0xDEADBEEDU)"
+.br
+.RI "\fISignature for static memory manager\&. \fP"
+.ti -1c
+.RI "#define \fBPMEM_SIGNATURE\fP   ((portReg_T)0xDEADBEEEU)"
+.br
+.RI "\fISignature for pool memory manager\&. \fP"
+.ti -1c
+.RI "#define \fBDMEM_SIGNATURE\fP   ((portReg_T)0xDEADBEEFU)"
+.br
+.RI "\fISignature for dynamic memory manager\&. \fP"
+.in -1c
+.SS "Typedefs"
+
+.in +1c
+.ti -1c
+.RI "typedef struct dMemBlock \fBdMemBlock_T\fP"
+.br
+.RI "\fIDynamic allocator memory block header type\&. \fP"
+.ti -1c
+.RI "typedef struct \fBpMemBlock\fP \fBpMemBlock_T\fP"
+.br
+.RI "\fIPool allocator header type\&. \fP"
+.in -1c
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "struct \fBPORT_C_ALIGN\fP (PORT_DEF_DATA_ALIGNMENT)"
+.br
+.RI "\fIDynamic allocator memory block header structure\&. \fP"
+.ti -1c
+.RI "\fBDECL_MODULE_INFO\fP ('MEM','Memory management','Nenad Radulovic')"
+.br
+.RI "\fIModule information\&. \fP"
+.ti -1c
+.RI "void \fBesSMemInit\fP (\fBesSMemHandle_T\fP *handle, void *storage, size_t storageSize)"
+.br
+.RI "\fIInitializes static memory instance\&. \fP"
+.ti -1c
+.RI "void * \fBesSMemAllocI\fP (\fBesSMemHandle_T\fP *handle, size_t size)"
+.br
+.RI "\fIAllocates static memory of size \fCsize\fP\&. \fP"
+.ti -1c
+.RI "void * \fBesSMemAlloc\fP (\fBesSMemHandle_T\fP *handle, size_t size)"
+.br
+.RI "\fIAllocates static memory of size \fCsize\fP\&. \fP"
+.ti -1c
+.RI "void \fBesSMemUpdateStatusI\fP (\fBesSMemHandle_T\fP *handle, \fBesMemStatus_T\fP *status)"
+.br
+.RI "\fIReturns various information about given memory instance\&. \fP"
+.ti -1c
+.RI "void \fBesSMemUpdateStatus\fP (\fBesSMemHandle_T\fP *handle, \fBesMemStatus_T\fP *status)"
+.br
+.RI "\fIReturns various information about given memory instance\&. \fP"
+.ti -1c
+.RI "void \fBesPMemInit\fP (\fBesPMemHandle_T\fP *handle, void *array, size_t arraySize, size_t blockSize)"
+.br
+.RI "\fIInitializes pool memory instance\&. \fP"
+.ti -1c
+.RI "size_t \fBesPMemCalcPoolSize\fP (size_t blocks, size_t blockSize)"
+.br
+.RI "\fICalculates required reserved memory size for defined number of blocks\&. \fP"
+.ti -1c
+.RI "void * \fBesPMemAllocI\fP (\fBesPMemHandle_T\fP *handle)"
+.br
+.RI "\fIAllocate one block from memory pool\&. \fP"
+.ti -1c
+.RI "void * \fBesPMemAlloc\fP (\fBesPMemHandle_T\fP *handle)"
+.br
+.RI "\fIAllocate one block from memory pool\&. \fP"
+.ti -1c
+.RI "void \fBesPMemDeAllocI\fP (\fBesPMemHandle_T\fP *handle, void *mem)"
+.br
+.RI "\fIOslobadja prethodno alocirani blok\&. \fP"
+.ti -1c
+.RI "void \fBesPMemDeAlloc\fP (\fBesPMemHandle_T\fP *handle, void *mem)"
+.br
+.RI "\fIOslobadja prethodno alocirani blok\&. \fP"
+.ti -1c
+.RI "void \fBesPMemUpdateStatusI\fP (\fBesPMemHandle_T\fP *handle, \fBesMemStatus_T\fP *status)"
+.br
+.RI "\fIVraca statusne informacije pool memorije\&. \fP"
+.ti -1c
+.RI "void \fBesPMemUpdateStatus\fP (\fBesPMemHandle_T\fP *handle, \fBesMemStatus_T\fP *status)"
+.br
+.RI "\fIVraca statusne informacije pool memorije\&. \fP"
+.ti -1c
+.RI "void \fBesDMemInit\fP (\fBesDMemHandle_T\fP *handle, void *storage, size_t storageSize)"
+.br
+.RI "\fIInicijalizuje dinamican memorijski alokator\&. \fP"
+.ti -1c
+.RI "void * \fBesDMemAllocI\fP (\fBesDMemHandle_T\fP *handle, size_t size)"
+.br
+.RI "\fIDodeljuje memorijski prostor velicine \fCsize\fP\&. \fP"
+.ti -1c
+.RI "void * \fBesDMemAlloc\fP (\fBesDMemHandle_T\fP *handle, size_t size)"
+.br
+.RI "\fIDodeljuje memorijski prostor velicine \fCsize\fP\&. \fP"
+.ti -1c
+.RI "void \fBesDMemDeAllocI\fP (\fBesDMemHandle_T\fP *handle, void *mem)"
+.br
+.RI "\fIReciklira memorijski prostor na koji pokazije \fCmem\fP pokazivac\&. \fP"
+.ti -1c
+.RI "void \fBesDMemDeAlloc\fP (\fBesDMemHandle_T\fP *handle, void *mem)"
+.br
+.RI "\fIReciklira memorijski prostor na koji pokazije \fCmem\fP pokazivac\&. \fP"
+.ti -1c
+.RI "void \fBesDMemUpdateStatusI\fP (\fBesDMemHandle_T\fP *handle, \fBesMemStatus_T\fP *status)"
+.br
+.RI "\fIVraca velicinu trenutno slobodne memorije u bajtovima\&. \fP"
+.ti -1c
+.RI "void \fBesDMemUpdateStatus\fP (\fBesDMemHandle_T\fP *handle, \fBesMemStatus_T\fP *status)"
+.br
+.RI "\fIVraca velicinu trenutno slobodne memorije u bajtovima\&. \fP"
+.in -1c
+.SS "Variables"
+
+.in +1c
+.ti -1c
+.RI "\fBesSMemHandle_T\fP \fBDefSMemHandle\fP"
+.br
+.RI "\fIDefault static memory handle\&. \fP"
+.ti -1c
+.RI "\fBesPMemHandle_T\fP \fBDefPMemHandle\fP"
+.br
+.RI "\fIDefault pool memory handle\&. \fP"
+.ti -1c
+.RI "\fBesDMemHandle_T\fP \fBDefDMemHandle\fP"
+.br
+.RI "\fIDefault dynamic memory handle\&. \fP"
+.in -1c
+.SH "Detailed Description"
+.PP 
+Memory Management Implementation\&. 
+
+
+.PP
+\fBAuthor:\fP
+.RS 4
+Nenad Radulovic 
+.RE
+.PP
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for eSolid - Memory Management from the source code\&.

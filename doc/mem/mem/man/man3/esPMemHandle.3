@@ -1,0 +1,76 @@
+.TH "esPMemHandle" 3 "Sat Nov 23 2013" "Version 1.0BetaR01" "eSolid - Memory Management" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+esPMemHandle \- 
+.PP
+Pool memory instance handle structure\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <mem\&.h>\fP
+.SS "Data Fields"
+
+.in +1c
+.ti -1c
+.RI "struct \fBpMemBlock\fP * \fBsentinel\fP"
+.br
+.RI "\fIPointer to the pool sentinel\&. \fP"
+.ti -1c
+.RI "size_t \fBsize\fP"
+.br
+.RI "\fIThe size of pool memory\&. \fP"
+.ti -1c
+.RI "size_t \fBblockSize\fP"
+.br
+.RI "\fISize of one block\&. \fP"
+.ti -1c
+.RI "portReg_T \fBsignature\fP"
+.br
+.RI "\fIStructure signature, used during development only\&. \fP"
+.in -1c
+.SH "Detailed Description"
+.PP 
+Pool memory instance handle structure\&. 
+
+This structure holds information about pool memory instance\&. \fCThis\fP structure hold information about pool and block sizes\&. Additionally, it holds a guard member which will ensure mutual exclusion in preemption environments\&. 
+.PP
+\fBSee Also:\fP
+.RS 4
+\fBesPMemInit()\fP 
+.RE
+.PP
+\fBObject class:\fP
+.RS 4
+Regular \fBAPI\fP object, this object is part of the application programming interface\&. 
+.RE
+.PP
+
+.PP
+\fBExamples: \fP
+.in +1c
+\fBdmem_init2\&.c\fP, \fBdmem_two_buffs\&.c\fP, \fBpmem_init1\&.c\fP, \fBpmem_init2\&.c\fP, \fBpmem_init3\&.c\fP, and \fBpmem_two_buffs\&.c\fP\&.
+.SH "Field Documentation"
+.PP 
+.SS "struct \fBpMemBlock\fP* esPMemHandle::sentinel"
+
+.PP
+Pointer to the pool sentinel\&. 
+.SS "size_t esPMemHandle::size"
+
+.PP
+The size of pool memory\&. 
+.SS "size_t esPMemHandle::blockSize"
+
+.PP
+Size of one block\&. 
+.SS "portReg_T esPMemHandle::signature"
+
+.PP
+Structure signature, used during development only\&. 
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for eSolid - Memory Management from the source code\&.

@@ -1,0 +1,39 @@
+\hypertarget{dmem_init1_8c-example}{\subsection{dmem\-\_\-init1.\-c}
+}
+This is an example how to initialize Dynamic Memory Manager. In this example a char buffer of B\-U\-F\-F\-E\-R\-\_\-\-S\-I\-Z\-E size is used to hold the data for Dynamic Memory Manager. B\-U\-F\-F\-E\-R\-\_\-\-S\-I\-Z\-E is set to 1024 so total buffer size is 1024 bytes. Keep in mind that Dynamic Memory Manager needs some parts of the buffer to keep track of its users so the available memory is slighty smaller then what is specified in B\-U\-F\-F\-E\-R\-\_\-\-S\-I\-Z\-E macro.
+
+
+\begin{DoxyCodeInclude}
+\textcolor{preprocessor}{#include "\hyperlink{mem_8h}{mem/mem.h}"}
+
+\textcolor{preprocessor}{#define BUFFER\_SIZE                     1024}
+\textcolor{preprocessor}{}
+\textcolor{keywordtype}{int} main (
+    \textcolor{keywordtype}{void}) \{
+
+    \textcolor{keyword}{static} \textcolor{keywordtype}{char} buffer[BUFFER\_SIZE];
+    \textcolor{keyword}{static} \hyperlink{structesDMemHandle}{esDMemHandle\_T} myHeap;
+
+    \hyperlink{group__mem__intf_ga10ef80121c0c742b9ad81f24eff91c7f}{esDMemInit}(
+        &myHeap,
+        &buffer[0],
+        \textcolor{keyword}{sizeof}(buffer));                                    \textcolor{comment}{/* Initialize the dynamic memory */}
+
+    \textcolor{keywordflow}{while} (TRUE) \{
+        \textcolor{keywordtype}{int} * myArray;
+
+        myArray = \hyperlink{group__mem__intf_ga807a7d2e705b1802b7671c0c903611a6}{esDMemAllocI}(
+            &myHeap,
+            \textcolor{keyword}{sizeof}(\textcolor{keywordtype}{int}) * 10u);                             \textcolor{comment}{/* Allocate an array of 10 integers */}
+
+        \textcolor{comment}{/*}
+\textcolor{comment}{         * Do some stuff}
+\textcolor{comment}{         */}
+
+        \hyperlink{group__mem__intf_gad56192526f2b6ec1f927d21b15e1bc11}{esDMemDeAllocI}(
+            &myHeap,
+            myArray);                                       \textcolor{comment}{/* Delete the array */}
+    \}
+\}
+\end{DoxyCodeInclude}
+ 

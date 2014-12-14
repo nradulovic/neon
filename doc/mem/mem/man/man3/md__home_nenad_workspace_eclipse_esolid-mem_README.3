@@ -1,0 +1,64 @@
+.TH "md__home_nenad_workspace_eclipse_esolid-mem_README" 3 "Sat Nov 23 2013" "Version 1.0BetaR01" "eSolid - Memory Management" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+md__home_nenad_workspace_eclipse_esolid-mem_README \- Quick-start guide 
+eSolid - Memory Management is a bare-memory manager for embedded devices\&.
+.PP
+eSolid is a collection of resources for embedded system design and this Memory management is only a piece of that collection\&.
+.PP
+.SS "TODO list"
+.PP
+.IP "\(bu" 2
+Integrate a profiling system (memory usage, fragmentation\&.\&.\&.)
+.IP "\(bu" 2
+test, test, test\&.\&.\&.
+.PP
+.PP
+.SH "Using eSolid - Memory management"
+.PP
+.PP
+.SS "Configuration and ports"
+.PP
+Configuration is done in two files: \fC\fBmem_cfg\&.h\fP\fP (port independent settings) and in \fCcpu_cfg\&.h\fP (port depended settings, located in port structure)\&. Currently, memory management is ported only to ARMv7-M architecture range of microcontrollers\&. It was tested on STM32F100 series of microcontrollers, but it should work, with minimal modifications, on any ARMv7-M CPU\&. Some other ports like AVR-GCC are planned, too\&.
+.PP
+.SS "Building"
+.PP
+The kernel was built using arm-none-eabi GCC v4\&.7\&.3 compiler toolchain (from https://launchpad.net/gcc-arm-embedded/+download) and binary was downloaded to the MCU using \fItexane\fP gdb-server\&. There are no makefiles, it is assumed that IDE will generate them for you\&.
+.PP
+.SS "Example for STM32F10x family port"
+.PP
+There are two groups of source files which need to be compiled for ARMv7-M architecture:
+.IP "\(bu" 2
+\fBmem\&.c\fP in \fC\&./src\fP source directory and
+.IP "\(bu" 2
+cpu\&.c in \fC\&./port/arm-none-eabi-gcc/v7-m\fP port directory\&.
+.PP
+.PP
+The following include paths are needed:
+.IP "\(bu" 2
+\fC\&./inc\fP
+.IP "\(bu" 2
+\fC\&./port/arm-none-eabi-gcc/common\fP
+.IP "\(bu" 2
+\fC\&./port/arm-none-eabi-gcc/v7-m\fP
+.IP "\(bu" 2
+\fC\&./port/arm-none-eabi-gcc/stm32f10x\fP
+.PP
+.PP
+.SS "Documentation"
+.PP
+Some documentation is available under Wiki https://github.com/nradulovic/esolid-mem/wiki\&. Doxygen configuration and full documentation source files are available in \fC/doc\fP directory\&. Go to the directory \fCdoc\fP create a directory named \fCkernel\fP and than run doxygen: 
+.PP
+.nf
+# doxygen doxyfile-mem
+# doxygen doxyfile-mem-port
+
+.fi
+.PP
+.PP
+This will generate HTML, LaTex and man documentation in \fC\&./doc/mem\fP and \fC\&./doc/mem-port\fP directories, respectively\&.
+.PP
+.SS "Running"
+.PP
+To successfully use and run kernel you will need to study the memory management documentation\&. The documentation is still being written and some examples will be added later\&. 

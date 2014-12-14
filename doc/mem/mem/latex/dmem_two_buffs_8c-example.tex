@@ -1,0 +1,69 @@
+\hypertarget{dmem_two_buffs_8c-example}{\subsection{dmem\-\_\-two\-\_\-buffs.\-c}
+}
+In this example two independent Dynamic Memory buffers are created. Each buffer is used for its own purpose. This can have the benefit of reducing memory fragmentation. Lets say that the data needed to be saved is 40 bytes in size, while commands are only one integer in size. So by putting small data (commands) in one buffer and large data in other buffer the fragmentation can be reduced.
+
+
+\begin{DoxyCodeInclude}
+\textcolor{preprocessor}{#include "\hyperlink{mem_8h}{mem/mem.h}"}
+
+\textcolor{preprocessor}{#define DATA\_BUFFER\_SIZE                2048}
+\textcolor{preprocessor}{}\textcolor{preprocessor}{#define COMMAND\_BUFFER\_SIZE             512}
+\textcolor{preprocessor}{}
+\textcolor{keywordtype}{int} main (
+    \textcolor{keywordtype}{void}) \{
+
+    \textcolor{keyword}{static} \hyperlink{structesPMemHandle}{esPMemHandle\_T} myBigStorage;
+    \textcolor{keyword}{static} \textcolor{keywordtype}{char} myReallyBigStorage[16384];
+    \textcolor{keyword}{static} \hyperlink{structesDMemHandle}{esDMemHandle\_T} dataHeap;
+    \textcolor{keyword}{static} \hyperlink{structesDMemHandle}{esDMemHandle\_T} commandHeap;
+    \textcolor{keyword}{static} \textcolor{keywordtype}{char} * dataBuffer;
+    \textcolor{keyword}{static} \textcolor{keywordtype}{char} * commandBuffer;
+
+    \hyperlink{group__mem__intf_ga53acef4ba27e5e401ac2e1f862e07a8b}{esSMemInit}(
+        &myBigStorage,
+        &myReallyBigStorage[0],
+        \textcolor{keyword}{sizeof}(myReallyBigStorage));                        \textcolor{comment}{/* Initialize the static memory */}
+
+    dataBuffer = \hyperlink{group__mem__intf_ga2e2086778aa0eb21156044730a1f380b}{esSMemAllocI}(
+        DATA\_BUFFER\_SIZE);                                  \textcolor{comment}{/* Create a data buffer of 2048 bytes */}
+    commandBuffer = \hyperlink{group__mem__intf_ga2e2086778aa0eb21156044730a1f380b}{esSMemAllocI}(
+        COMMAND\_BUFFER\_SIZE);                               \textcolor{comment}{/* Create additional buffer of 512 bytes */}
+
+    \hyperlink{group__mem__intf_ga10ef80121c0c742b9ad81f24eff91c7f}{esDMemInit}(
+        &dataHeap,
+        dataBuffer,
+        DATA\_BUFFER\_SIZE);                                  \textcolor{comment}{/* Initialize the dynamic memory for data */}
+
+    \hyperlink{group__mem__intf_ga10ef80121c0c742b9ad81f24eff91c7f}{esDMemInit}(
+        &commandHeap,
+        commandBuffer,
+        COMMAND\_BUFFER\_SIZE);                               \textcolor{comment}{/* Initialize the dynamic memory for commands 
+      */}
+
+    \textcolor{keywordflow}{while} (TRUE) \{
+        \textcolor{keywordtype}{int} * data;
+        \textcolor{keywordtype}{int} * command;
+
+        data = \hyperlink{group__mem__intf_ga807a7d2e705b1802b7671c0c903611a6}{esDMemAllocI}(
+            &dataHeap,
+            \textcolor{keyword}{sizeof}(\textcolor{keywordtype}{int}) * 10u);                             \textcolor{comment}{/* Allocate an array of 10 integers */}
+
+        command = \hyperlink{group__mem__intf_ga807a7d2e705b1802b7671c0c903611a6}{esDMemAllocI}(
+            &commandHeap,
+            \textcolor{keyword}{sizeof}(\textcolor{keywordtype}{int}));
+
+        \textcolor{comment}{/*}
+\textcolor{comment}{         * Do some stuff}
+\textcolor{comment}{         */}
+
+        \hyperlink{group__mem__intf_gad56192526f2b6ec1f927d21b15e1bc11}{esDMemDeAllocI}(
+            &commandHeap,
+            command);                                       \textcolor{comment}{/* Delete the command */}
+
+        \hyperlink{group__mem__intf_gad56192526f2b6ec1f927d21b15e1bc11}{esDMemDeAllocI}(
+            &dataHeap,
+            data);                                          \textcolor{comment}{/* Delete the data */}
+    \}
+\}
+\end{DoxyCodeInclude}
+ 

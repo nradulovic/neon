@@ -1,0 +1,60 @@
+.TH "esDMemHandle" 3 "Sat Nov 23 2013" "Version 1.0BetaR01" "eSolid - Memory Management" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+esDMemHandle \- 
+.PP
+Dynamic memory instance handle structure\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <mem\&.h>\fP
+.SS "Data Fields"
+
+.in +1c
+.ti -1c
+.RI "struct dMemBlock * \fBsentinel\fP"
+.br
+.RI "\fIPointer to the memory sentinel\&. \fP"
+.ti -1c
+.RI "portReg_T \fBsignature\fP"
+.br
+.RI "\fIStructure signature, used during development only\&. \fP"
+.in -1c
+.SH "Detailed Description"
+.PP 
+Dynamic memory instance handle structure\&. 
+
+This structure holds information about dynamic memory instance\&. 
+.PP
+\fBSee Also:\fP
+.RS 4
+\fBesDMemInit()\fP 
+.RE
+.PP
+\fBObject class:\fP
+.RS 4
+Regular \fBAPI\fP object, this object is part of the application programming interface\&. 
+.RE
+.PP
+
+.PP
+\fBExamples: \fP
+.in +1c
+\fBdmem_init1\&.c\fP, \fBdmem_init2\&.c\fP, and \fBdmem_two_buffs\&.c\fP\&.
+.SH "Field Documentation"
+.PP 
+.SS "struct dMemBlock* esDMemHandle::sentinel"
+
+.PP
+Pointer to the memory sentinel\&. 
+.SS "portReg_T esDMemHandle::signature"
+
+.PP
+Structure signature, used during development only\&. 
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for eSolid - Memory Management from the source code\&.

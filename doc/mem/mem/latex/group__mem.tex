@@ -1,0 +1,84 @@
+\hypertarget{group__mem}{\subsection{Memory management}
+\label{group__mem}\index{Memory management@{Memory management}}
+}
+
+
+Memory Management overview.  
+
+
+Collaboration diagram for Memory management\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=312pt]{group__mem}
+\end{center}
+\end{figure}
+\subsubsection*{Modules}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{group__mem__intf}{A\-P\-I}
+\begin{DoxyCompactList}\small\item\em Memory Management A\-P\-I. \end{DoxyCompactList}\item 
+\hyperlink{group__mem__cfg}{Configuration}
+\item 
+\hyperlink{group__mem__impl}{Implementation}
+\end{DoxyCompactItemize}
+
+
+\subsubsection{Detailed Description}
+Memory Management overview. \hypertarget{group__mem_mem_index}{}\subsubsection{Sadrzaj}\label{group__mem_mem_index}
+
+\begin{DoxyItemize}
+\item \hyperlink{group__mem_mem_smem}{Staticki memorijski menadzer}
+\item \hyperlink{group__mem_mem_dmem}{Dinamicki memorijski menadzer}
+\item \hyperlink{group__mem_mem_pmem}{Pool memorijski menadzer}
+\item \hyperlink{group__mem_mem_configuration}{Konfiguracija Memory Management modula}
+\end{DoxyItemize}\hypertarget{group__mem_mem_smem}{}\subsubsection{Staticki memorijski menadzer}\label{group__mem_mem_smem}
+Staticki memorijski menadzer moze samo da alocira memoriju i jednom alocirana memorija se ne moze osloboditi. Koristi se kada je potrebno staticki alocirati objekte koji se nikada ne brisu. Ovaj memorijski menadzer je najjednostavniji i najbrzi, pa se preporucuje za mikroprocesore sa ogranicenim performansama. Potrosnja memorije iznosi samo 4-\/8 bajtova za ceo memorijski menadzer i ne postoji dodatna potrosnja memorije prilikom alociranja.
+
+Staticni memorijski menadzer je jedinstven za embedded sistem. Ne mogu postojati vise instanci staticnog alokatora. Velicina memorije koja se predaje staticnom alokatoru na koriscenje se podesava opcijom O\-P\-T\-\_\-\-M\-E\-M\-\_\-\-S\-M\-E\-M\-\_\-\-S\-I\-Z\-E.\hypertarget{group__mem_mem_dmem}{}\subsubsection{Dinamicki memorijski menadzer}\label{group__mem_mem_dmem}
+Dinamicki memorijski menadzer je po funkcionalnosti identican sa funkcijama standardne C biblioteke malloc/free, sa tom izmenom da je prilagodjen za rad sa embedded sistemima.
+
+Za razliku od staticnog alokatora, koji je jedinstven za sistem, u jednom embedded sistemu mogu postojati nekoliko instanci dinamickih alokatora. Razliciti dinamicki alokatori se referenciraju strukturom tipa \hyperlink{group__mem__intf_gacaaf771b18b3da8fa3b67a466390080e}{es\-D\-Mem\-Handle\-\_\-\-T}. Pogledati primer \hyperlink{dmem_two_buffs_8c-example}{dmem\-\_\-two\-\_\-buffs.\-c}.\hypertarget{group__mem_mem_ff_alloc}{}\paragraph{First Fit algoritam}\label{group__mem_mem_ff_alloc}
+U ovom algoritmu, alokator cuva listu slobodnih blokova i po prijemu zahteva za memoriju, skenira duz liste za prvim blokom koji je dovoljno veliki da opsluzi zahtev. Ako je izabrani blok dovoljno veci nego sto je zahtevano onda se blok deli na dva dela, jedan deo se predaje korisniku, a drugi blok se postavlja nazad u listu slobodnih blokova. Kada se vrsi reciklaza blokova, najpre se proveravaju susedni blokovi da li su zauzeti. Susedni blokovi koji su slobodni spajaju se sa blokom koji se reciklira i na taj nacin formira novi, veci blok.\hypertarget{group__mem_mem_ff_specs}{}\paragraph{Specifikacije first fit alokatora}\label{group__mem_mem_ff_specs}
+
+\begin{DoxyItemize}
+\item Maksimalno vreme izvrsavanja operacije alokacije bloka {\bfseries nije} unapred poznato. Zbog navedene cinjenice alokator nije pogodan za hard real-\/time sisteme.
+\item Maksimalno vreme izvrsavanja operacije dealokacije bloka je unapred poznato.
+\item Ukupno minimalno zauzece R\-A\-M memorije (Cortex-\/\-M3 arch)\-: {\bfseries 28\-B} 
+\end{DoxyItemize}\hypertarget{group__mem_mem_pmem}{}\subsubsection{Pool memorijski menadzer}\label{group__mem_mem_pmem}
+Pool memorijski menadzer je vrlo slican dinamickom memorijskom menadzeru sa tom razlikom sto ne moze da se zatrazi proizvoljna kolicina memorije. Potrazivanje memorije se vrsi unapred definisanom velicinom bloka koja vazi za datu instancu pool memorije.
+
+Podrzano je postojanje veceg broja razlicitih instanci, koje se referenciraju strukturama tipa \hyperlink{group__mem__intf_gaf82f01d26c4f6bc9a2b672a673b09ce2}{es\-P\-Mem\-Handle\-\_\-\-T}. Pogledati primer \hyperlink{pmem_two_buffs_8c-example}{pmem\-\_\-two\-\_\-buffs.\-c}.\hypertarget{group__mem_mem_pool_specs}{}\paragraph{Specifikacije pool alokatora}\label{group__mem_mem_pool_specs}
+
+\begin{DoxyItemize}
+\item Maksimalno vreme izvrsavanja operacije alokacije bloka {\bfseries je} unapred poznato. Zbog navedene cinjenice alokator {\bfseries je} pogodan za hard real-\/time sisteme.
+\item Maksimalno vreme izvrsavanja operacije dealokacije bloka je unapred poznato.
+\item Ukupno minimalno zauzece R\-A\-M memorije (Cortex-\/\-M3 arch)\-: {\bfseries 12\-B} 
+\end{DoxyItemize}\hypertarget{group__mem_mem_configuration}{}\subsubsection{Konfiguracija Memory Management modula}\label{group__mem_mem_configuration}
+Konfiguracija se vrsi u datoteci mem\-\_\-config.\-h. Navodjenje opcija se vrsi u sekciji D\-E\-F\-I\-N\-E\-S.
+
+Na primer, ako je potrebno dodeliti 1024\-B memorije static alokatoru onda se u datoteci mem\-\_\-config.\-h u sekciji {\ttfamily {\bfseries D\-E\-F\-I\-N\-E\-S} unosi} sledece\-:
+
+
+\begin{DoxyCode}
+    :
+    :
+    
+\textcolor{comment}{/*===============================================================  DEFINES  ==*/}
+    
+    :
+    :
+    
+\textcolor{preprocessor}{#define OPT\_MEM\_SMEM\_SIZE               1024U}
+\textcolor{preprocessor}{}
+    :
+    :
+    
+\textcolor{comment}{/*==============================================================  SETTINGS  ==*/},
+
+    :
+    :
+\end{DoxyCode}
+
+
+Za opcije Memory Management modula pogledati \hyperlink{group__mem__cfg}{Configuration}. 

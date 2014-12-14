@@ -1,0 +1,64 @@
+\hypertarget{pmem_init3_8c-example}{\subsection{pmem\-\_\-init3.\-c}
+}
+This example is very similar to pmem\-\_\-init2.\-c. The only difference is how the required pool storage size is calculated.
+
+
+\begin{DoxyCodeInclude}
+\textcolor{preprocessor}{#include <stddef.h>}
+\textcolor{preprocessor}{#include <stdint.h>}
+\textcolor{preprocessor}{#include "\hyperlink{mem_8h}{mem/mem.h}"}
+
+\textcolor{keyword}{struct }dataBlock \{                                          \textcolor{comment}{/* Some application data structure which will
+       be placed in pool */}
+    uint32\_t data01;
+    uint32\_t data02;
+    uint16\_t command;
+\};
+
+\textcolor{preprocessor}{#define POOL\_ELEMENTS                   10u                 }\textcolor{comment}{/* Number of blocks in the pool */}\textcolor{preprocessor}{}
+\textcolor{preprocessor}{}
+\textcolor{keywordtype}{int} main(
+    \textcolor{keywordtype}{void}) \{
+
+    \textcolor{keyword}{static} \hyperlink{structesPMemHandle}{esPMemHandle\_T} myBigStorage;
+    \textcolor{keyword}{static} \textcolor{keywordtype}{char} myReallyBigStorage[16384];
+    \textcolor{keyword}{static} \hyperlink{structesPMemHandle}{esPMemHandle\_T} myPool;                           \textcolor{comment}{/* myPool pool handle */}
+    \textcolor{keyword}{static} \textcolor{keywordtype}{void} * poolStorage;                              \textcolor{comment}{/* pointer to pool storage */}
+    \textcolor{keyword}{static} \textcolor{keywordtype}{size\_t} poolSize;                                 \textcolor{comment}{/* size of pool */}
+
+    \hyperlink{group__mem__intf_ga53acef4ba27e5e401ac2e1f862e07a8b}{esSMemInit}(
+        &myBigStorage,
+        &myReallyBigStorage[0],
+        \textcolor{keyword}{sizeof}(myReallyBigStorage));                        \textcolor{comment}{/* Initialize the static memory */}
+
+    poolSize = \hyperlink{group__mem__intf_gab82743b6c82847c748bf5193f0f211ec}{esPMemCalcPoolSize}(
+        \textcolor{keyword}{sizeof}(\textcolor{keyword}{struct} dataBlock),
+        POOL\_ELEMENTS);                                     \textcolor{comment}{/* Calculate the required pool size which will
+       hold */}
+                                                            \textcolor{comment}{/* POOL\_ELEMENTS number of structures of type
+       dataBlock */}
+    poolStorage = \hyperlink{group__mem__intf_ga2e2086778aa0eb21156044730a1f380b}{esSMemAllocI}(
+        poolSize);                                          \textcolor{comment}{/* Allocate pool storage memory */}
+    \hyperlink{group__mem__intf_gac151cf4385488838b0507936e67e2584}{esPMemInit}(
+        &myPool,
+        poolStorage,
+        poolSize,
+        \textcolor{keyword}{sizeof}(\textcolor{keyword}{struct} dataBlock));                          \textcolor{comment}{/* Initialize myPool pool memory */}
+
+    \textcolor{keywordflow}{while} (TRUE) \{
+        \textcolor{keyword}{struct }dataBlock * data;
+
+        data = \hyperlink{group__mem__intf_gabdacce602565fcd6a186c2834cb74488}{esPMemAllocI}(
+            &myPool);                                       \textcolor{comment}{/* Allocate a block from pool memory */}
+
+        \textcolor{comment}{/*}
+\textcolor{comment}{         * Do something with data}
+\textcolor{comment}{         */}
+
+        \hyperlink{group__mem__intf_ga2c0f1b135c5639809b17dfe44e06f1b5}{esPMemDeAllocI}(
+            &myPool,
+            data);                                          \textcolor{comment}{/* Return back the block */}
+    \}
+\}
+\end{DoxyCodeInclude}
+ 

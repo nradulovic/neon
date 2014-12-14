@@ -1,0 +1,50 @@
+\hypertarget{dmem_init2_8c-example}{\subsection{dmem\-\_\-init2.\-c}
+}
+This is a more advanced example of Dynamic Memory initialization. First it initializes the static memory and requires 1024 bytes from it for data storage.
+
+
+\begin{DoxyCodeInclude}
+\textcolor{preprocessor}{#include "\hyperlink{mem_8h}{mem/mem.h}"}
+
+\textcolor{preprocessor}{#define BUFFER\_SIZE                     1024}
+\textcolor{preprocessor}{}
+\textcolor{keywordtype}{int} main (
+    \textcolor{keywordtype}{void}) \{
+
+    \textcolor{keyword}{static} \hyperlink{structesPMemHandle}{esPMemHandle\_T} myBigStorage;
+    \textcolor{keyword}{static} \textcolor{keywordtype}{char} myReallyBigStorage[16384];
+    \textcolor{keyword}{static} \hyperlink{structesDMemHandle}{esDMemHandle\_T} myHeap;
+    \textcolor{keyword}{static} \textcolor{keywordtype}{char} * buffer;
+
+    \hyperlink{group__mem__intf_ga53acef4ba27e5e401ac2e1f862e07a8b}{esSMemInit}(
+        &myBigStorage,
+        &myReallyBigStorage[0],
+        \textcolor{keyword}{sizeof}(myReallyBigStorage));                        \textcolor{comment}{/* Initialize the static memory */}
+
+    buffer = \hyperlink{group__mem__intf_ga2e2086778aa0eb21156044730a1f380b}{esSMemAllocI}(
+        BUFFER\_SIZE);                                       \textcolor{comment}{/* Allocate a buffer of 1024 bytes from static
+       memory*/}
+
+    \hyperlink{group__mem__intf_ga10ef80121c0c742b9ad81f24eff91c7f}{esDMemInit}(
+        &myHeap,
+        buffer,
+        BUFFER\_SIZE);                                       \textcolor{comment}{/* Initialize the dynamic memory */}
+
+    \textcolor{keywordflow}{while} (TRUE) \{
+        \textcolor{keywordtype}{int} * myArray;
+
+        myArray = \hyperlink{group__mem__intf_ga807a7d2e705b1802b7671c0c903611a6}{esDMemAllocI}(
+            &myHeap,
+            \textcolor{keyword}{sizeof}(\textcolor{keywordtype}{int}) * 10u);                             \textcolor{comment}{/* Allocate an array of 10 integers */}
+
+        \textcolor{comment}{/*}
+\textcolor{comment}{         * Do some stuff}
+\textcolor{comment}{         */}
+
+        \hyperlink{group__mem__intf_gad56192526f2b6ec1f927d21b15e1bc11}{esDMemDeAllocI}(
+            &myHeap,
+            myArray);                                       \textcolor{comment}{/* Delete the array */}
+    \}
+\}
+\end{DoxyCodeInclude}
+ 

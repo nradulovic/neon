@@ -1,0 +1,64 @@
+.TH "esMemStatus" 3 "Sat Nov 23 2013" "Version 1.0BetaR01" "eSolid - Memory Management" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+esMemStatus \- 
+.PP
+Memory status structure\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <mem\&.h>\fP
+.SS "Data Fields"
+
+.in +1c
+.ti -1c
+.RI "size_t \fBsize\fP"
+.br
+.RI "\fISize of dynamic memory\&. \fP"
+.ti -1c
+.RI "size_t \fBfreeSpaceTotal\fP"
+.br
+.RI "\fITotal free space\&. \fP"
+.ti -1c
+.RI "size_t \fBfreeSpaceContiguous\fP"
+.br
+.RI "\fIContiguous free space\&. \fP"
+.in -1c
+.SH "Detailed Description"
+.PP 
+Memory status structure\&. 
+
+This structure is used to get the status of a memory instance\&. Memory instance can be of type \fCstatic\fP, \fCdynamic\fP and \fCpool\fP\&. 
+.PP
+\fBSee Also:\fP
+.RS 4
+\fBesSMemUpdateStatusI()\fP, \fBesPMemUpdateStatusI()\fP, \fBesDMemUpdateStatusI()\fP 
+.RE
+.PP
+\fBObject class:\fP
+.RS 4
+Regular \fBAPI\fP object, this object is part of the application programming interface\&. 
+.RE
+.PP
+
+.SH "Field Documentation"
+.PP 
+.SS "size_t esMemStatus::size"
+
+.PP
+Size of dynamic memory\&. 
+.SS "size_t esMemStatus::freeSpaceTotal"
+
+.PP
+Total free space\&. 
+.SS "size_t esMemStatus::freeSpaceContiguous"
+
+.PP
+Contiguous free space\&. 
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for eSolid - Memory Management from the source code\&.

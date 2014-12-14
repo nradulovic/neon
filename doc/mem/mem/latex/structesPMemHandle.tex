@@ -1,0 +1,82 @@
+\hypertarget{structesPMemHandle}{\subsection{es\-P\-Mem\-Handle Struct Reference}
+\label{structesPMemHandle}\index{es\-P\-Mem\-Handle@{es\-P\-Mem\-Handle}}
+}
+
+
+Pool memory instance handle structure.  
+
+
+
+
+{\ttfamily \#include $<$mem.\-h$>$}
+
+
+
+Collaboration diagram for es\-P\-Mem\-Handle\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=203pt]{structesPMemHandle__coll__graph}
+\end{center}
+\end{figure}
+\subsubsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{structpMemBlock}{p\-Mem\-Block} $\ast$ \hyperlink{structesPMemHandle_a95b980208def4ca8c17c343aed282cd7}{sentinel}
+\begin{DoxyCompactList}\small\item\em Pointer to the pool sentinel. \end{DoxyCompactList}\item 
+size\-\_\-t \hyperlink{structesPMemHandle_a2ef5d8986c5e117c8ab5214e89ea021b}{size}
+\begin{DoxyCompactList}\small\item\em The size of pool memory. \end{DoxyCompactList}\item 
+size\-\_\-t \hyperlink{structesPMemHandle_a4498b86739feeabac46a7c2f457b3909}{block\-Size}
+\begin{DoxyCompactList}\small\item\em Size of one block. \end{DoxyCompactList}\item 
+port\-Reg\-\_\-\-T \hyperlink{structesPMemHandle_a16a84810e44eeed16fb9475f2f07001f}{signature}
+\begin{DoxyCompactList}\small\item\em Structure signature, used during development only. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsubsection{Detailed Description}
+Pool memory instance handle structure. 
+
+This structure holds information about pool memory instance. {\ttfamily This} structure hold information about pool and block sizes. Additionally, it holds a guard member which will ensure mutual exclusion in preemption environments. \begin{DoxySeeAlso}{See Also}
+\hyperlink{group__mem__intf_gac151cf4385488838b0507936e67e2584}{es\-P\-Mem\-Init()} 
+\end{DoxySeeAlso}
+\begin{DoxyParagraph}{Object class\-:}
+Regular {\bfseries A\-P\-I} object, this object is part of the application programming interface. 
+\end{DoxyParagraph}
+\begin{Desc}
+\item[Examples\-: ]\par
+\hyperlink{dmem_init2_8c-example}{dmem\-\_\-init2.\-c}, \hyperlink{dmem_two_buffs_8c-example}{dmem\-\_\-two\-\_\-buffs.\-c}, \hyperlink{pmem_init1_8c-example}{pmem\-\_\-init1.\-c}, \hyperlink{pmem_init2_8c-example}{pmem\-\_\-init2.\-c}, \hyperlink{pmem_init3_8c-example}{pmem\-\_\-init3.\-c}, and \hyperlink{pmem_two_buffs_8c-example}{pmem\-\_\-two\-\_\-buffs.\-c}.\end{Desc}
+
+
+\subsubsection{Field Documentation}
+\hypertarget{structesPMemHandle_a95b980208def4ca8c17c343aed282cd7}{\index{es\-P\-Mem\-Handle@{es\-P\-Mem\-Handle}!sentinel@{sentinel}}
+\index{sentinel@{sentinel}!esPMemHandle@{es\-P\-Mem\-Handle}}
+\paragraph[{sentinel}]{\setlength{\rightskip}{0pt plus 5cm}struct {\bf p\-Mem\-Block}$\ast$ es\-P\-Mem\-Handle\-::sentinel}}\label{structesPMemHandle_a95b980208def4ca8c17c343aed282cd7}
+
+
+Pointer to the pool sentinel. 
+
+\hypertarget{structesPMemHandle_a2ef5d8986c5e117c8ab5214e89ea021b}{\index{es\-P\-Mem\-Handle@{es\-P\-Mem\-Handle}!size@{size}}
+\index{size@{size}!esPMemHandle@{es\-P\-Mem\-Handle}}
+\paragraph[{size}]{\setlength{\rightskip}{0pt plus 5cm}size\-\_\-t es\-P\-Mem\-Handle\-::size}}\label{structesPMemHandle_a2ef5d8986c5e117c8ab5214e89ea021b}
+
+
+The size of pool memory. 
+
+\hypertarget{structesPMemHandle_a4498b86739feeabac46a7c2f457b3909}{\index{es\-P\-Mem\-Handle@{es\-P\-Mem\-Handle}!block\-Size@{block\-Size}}
+\index{block\-Size@{block\-Size}!esPMemHandle@{es\-P\-Mem\-Handle}}
+\paragraph[{block\-Size}]{\setlength{\rightskip}{0pt plus 5cm}size\-\_\-t es\-P\-Mem\-Handle\-::block\-Size}}\label{structesPMemHandle_a4498b86739feeabac46a7c2f457b3909}
+
+
+Size of one block. 
+
+\hypertarget{structesPMemHandle_a16a84810e44eeed16fb9475f2f07001f}{\index{es\-P\-Mem\-Handle@{es\-P\-Mem\-Handle}!signature@{signature}}
+\index{signature@{signature}!esPMemHandle@{es\-P\-Mem\-Handle}}
+\paragraph[{signature}]{\setlength{\rightskip}{0pt plus 5cm}port\-Reg\-\_\-\-T es\-P\-Mem\-Handle\-::signature}}\label{structesPMemHandle_a16a84810e44eeed16fb9475f2f07001f}
+
+
+Structure signature, used during development only. 
+
+
+
+The documentation for this struct was generated from the following file\-:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{mem_8h}{mem.\-h}\end{DoxyCompactItemize}

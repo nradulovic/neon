@@ -1,0 +1,64 @@
+\hypertarget{pmem_two_buffs_8c-example}{\subsection{pmem\-\_\-two\-\_\-buffs.\-c}
+}
+T\-O\-D\-O
+
+
+\begin{DoxyCodeInclude}
+\textcolor{preprocessor}{#include <stdint.h>}
+\textcolor{preprocessor}{#include "\hyperlink{mem_8h}{mem/mem.h}"}
+
+\textcolor{preprocessor}{#define DATA\_ELEMENTS                   200u                }\textcolor{comment}{/* Number of blocks in data pool */}\textcolor{preprocessor}{}
+\textcolor{preprocessor}{}\textcolor{preprocessor}{#define COMMAND\_ELEMENTS                100u                }\textcolor{comment}{/* Number of blocks in command pool */}\textcolor{preprocessor}{}
+\textcolor{preprocessor}{}
+\textcolor{keyword}{struct }dataElement \{                                        \textcolor{comment}{/* A sample structure representing application
+       data */}
+    uint32\_t data01;
+    uint32\_t data02;
+\};
+
+\textcolor{keywordtype}{int} main (
+    \textcolor{keywordtype}{void}) \{
+
+    \textcolor{keyword}{static} \hyperlink{structesPMemHandle}{esPMemHandle\_T} dataPool;
+    \textcolor{keyword}{static} \hyperlink{structesPMemHandle}{esPMemHandle\_T} commandPool;
+    \textcolor{keyword}{static} \textcolor{keyword}{struct }dataElement dataStorage[DATA\_ELEMENTS];   \textcolor{comment}{/* This will hold application data */}
+    \textcolor{keyword}{static} \textcolor{keywordtype}{int} commandStorage[COMMAND\_ELEMENTS];            \textcolor{comment}{/* This will hold application commands, each
+       command is one integer */}
+
+    \hyperlink{group__mem__intf_gac151cf4385488838b0507936e67e2584}{esPMemInit}(
+        &dataPool,
+        &dataStorage,
+        \textcolor{keyword}{sizeof}(dataStorage),
+        \textcolor{keyword}{sizeof}(\textcolor{keyword}{struct} dataElement));                        \textcolor{comment}{/* Initialize the pool memory for data */}
+
+    \hyperlink{group__mem__intf_gac151cf4385488838b0507936e67e2584}{esPMemInit}(
+        &commandPool,
+        &commandStorage,
+        \textcolor{keyword}{sizeof}(commandStorage),
+        \textcolor{keyword}{sizeof}(\textcolor{keywordtype}{int}));                                       \textcolor{comment}{/* Initialize the pool memory for commands */}
+
+    \textcolor{keywordflow}{while} (TRUE) \{
+        \textcolor{keywordtype}{int} * data;
+        \textcolor{keywordtype}{int} * command;
+
+        data = \hyperlink{group__mem__intf_gabdacce602565fcd6a186c2834cb74488}{esPMemAllocI}(
+            &dataPool);                                     \textcolor{comment}{/* Allocate memory for data */}
+
+        command = \hyperlink{group__mem__intf_gabdacce602565fcd6a186c2834cb74488}{esPMemAllocI}(
+            &commandPool);                                  \textcolor{comment}{/* Allocate memory for command */}
+
+        \textcolor{comment}{/*}
+\textcolor{comment}{         * Do some stuff}
+\textcolor{comment}{         */}
+
+        \hyperlink{group__mem__intf_ga2c0f1b135c5639809b17dfe44e06f1b5}{esPMemDeAllocI}(
+            &commandPool,
+            command);                                       \textcolor{comment}{/* Delete the command */}
+
+        \hyperlink{group__mem__intf_ga2c0f1b135c5639809b17dfe44e06f1b5}{esPMemDeAllocI}(
+            &dataPool,
+            data);                                          \textcolor{comment}{/* Delete the data */}
+    \}
+\}
+\end{DoxyCodeInclude}
+ 

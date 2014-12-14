@@ -1,0 +1,67 @@
+.TH "esSMemHandle" 3 "Sat Nov 23 2013" "Version 1.0BetaR01" "eSolid - Memory Management" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+esSMemHandle \- 
+.PP
+Static memory instance handle structure\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <mem\&.h>\fP
+.SS "Data Fields"
+
+.in +1c
+.ti -1c
+.RI "portReg_T * \fBbegin\fP"
+.br
+.RI "\fIPointer to the beginning of static memory\&. \fP"
+.ti -1c
+.RI "portReg_T \fBcurrent\fP"
+.br
+.RI "\fICurrent index of managed memory\&. \fP"
+.ti -1c
+.RI "size_t \fBsize\fP"
+.br
+.RI "\fIThe size of static memory\&. \fP"
+.ti -1c
+.RI "portReg_T \fBsignature\fP"
+.br
+.RI "\fIStructure signature, used during development only\&. \fP"
+.in -1c
+.SH "Detailed Description"
+.PP 
+Static memory instance handle structure\&. 
+
+This structure holds information about static memory instance\&. 
+.PP
+\fBObject class:\fP
+.RS 4
+Regular \fBAPI\fP object, this object is part of the application programming interface\&. 
+.RE
+.PP
+
+.SH "Field Documentation"
+.PP 
+.SS "portReg_T* esSMemHandle::begin"
+
+.PP
+Pointer to the beginning of static memory\&. 
+.SS "portReg_T esSMemHandle::current"
+
+.PP
+Current index of managed memory\&. 
+.SS "size_t esSMemHandle::size"
+
+.PP
+The size of static memory\&. 
+.SS "portReg_T esSMemHandle::signature"
+
+.PP
+Structure signature, used during development only\&. 
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for eSolid - Memory Management from the source code\&.

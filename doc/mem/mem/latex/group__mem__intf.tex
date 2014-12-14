@@ -1,0 +1,702 @@
+\hypertarget{group__mem__intf}{\subsection{A\-P\-I}
+\label{group__mem__intf}\index{A\-P\-I@{A\-P\-I}}
+}
+
+
+Memory Management A\-P\-I.  
+
+
+Collaboration diagram for A\-P\-I\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=262pt]{group__mem__intf}
+\end{center}
+\end{figure}
+\subsubsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{structesMemStatus}{es\-Mem\-Status}
+\begin{DoxyCompactList}\small\item\em Memory status structure. \end{DoxyCompactList}\item 
+struct \hyperlink{structesSMemHandle}{es\-S\-Mem\-Handle}
+\begin{DoxyCompactList}\small\item\em Static memory instance handle structure. \end{DoxyCompactList}\item 
+struct \hyperlink{structesPMemHandle}{es\-P\-Mem\-Handle}
+\begin{DoxyCompactList}\small\item\em Pool memory instance handle structure. \end{DoxyCompactList}\item 
+struct \hyperlink{structesDMemHandle}{es\-D\-Mem\-Handle}
+\begin{DoxyCompactList}\small\item\em Dynamic memory instance handle structure. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef struct \hyperlink{structesMemStatus}{es\-Mem\-Status} \hyperlink{group__mem__intf_ga0eb568b68247d93e2db804a681de0e9e}{es\-Mem\-Status\-\_\-\-T}
+\begin{DoxyCompactList}\small\item\em Memory status type. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsubsection*{Static memory manager -\/ S\-Mem}
+\begin{DoxyCompactItemize}
+\item 
+typedef struct \hyperlink{structesSMemHandle}{es\-S\-Mem\-Handle} \hyperlink{group__mem__intf_gabf19a317cc22713cfb45ae1e43d34d7e}{es\-S\-Mem\-Handle\-\_\-\-T}
+\begin{DoxyCompactList}\small\item\em Static memory instance handle type. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsubsection*{Pool memory allocator -\/ P\-Mem}
+\begin{DoxyCompactItemize}
+\item 
+typedef struct \hyperlink{structesPMemHandle}{es\-P\-Mem\-Handle} \hyperlink{group__mem__intf_gaf82f01d26c4f6bc9a2b672a673b09ce2}{es\-P\-Mem\-Handle\-\_\-\-T}
+\begin{DoxyCompactList}\small\item\em Pool memory instance handle type. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsubsection*{Dynamic memory allocator -\/ D\-Mem}
+\begin{DoxyCompactItemize}
+\item 
+typedef struct \hyperlink{structesDMemHandle}{es\-D\-Mem\-Handle} \hyperlink{group__mem__intf_gacaaf771b18b3da8fa3b67a466390080e}{es\-D\-Mem\-Handle\-\_\-\-T}
+\begin{DoxyCompactList}\small\item\em Dynamic memory instance handle type. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsubsection*{Default memory instance handles}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{group__mem__intf_gabf19a317cc22713cfb45ae1e43d34d7e}{es\-S\-Mem\-Handle\-\_\-\-T} \hyperlink{group__mem__intf_ga59214c7e13470c5e76c7b59c4f084b1c}{Def\-S\-Mem\-Handle}
+\begin{DoxyCompactList}\small\item\em Default static memory handle. \end{DoxyCompactList}\item 
+\hyperlink{group__mem__intf_gaf82f01d26c4f6bc9a2b672a673b09ce2}{es\-P\-Mem\-Handle\-\_\-\-T} \hyperlink{group__mem__intf_gafb0dc701e9679157a617a091843bcd7f}{Def\-P\-Mem\-Handle}
+\begin{DoxyCompactList}\small\item\em Default pool memory handle. \end{DoxyCompactList}\item 
+\hyperlink{group__mem__intf_gacaaf771b18b3da8fa3b67a466390080e}{es\-D\-Mem\-Handle\-\_\-\-T} \hyperlink{group__mem__intf_gae2d3f8ca3b99ba0a5b9d9518a7bc280b}{Def\-D\-Mem\-Handle}
+\begin{DoxyCompactList}\small\item\em Default dynamic memory handle. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsubsection*{Static memory manager}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{group__mem__intf_ga53acef4ba27e5e401ac2e1f862e07a8b}{es\-S\-Mem\-Init} (\hyperlink{group__mem__intf_gabf19a317cc22713cfb45ae1e43d34d7e}{es\-S\-Mem\-Handle\-\_\-\-T} $\ast$handle, void $\ast$storage, size\-\_\-t storage\-Size)
+\begin{DoxyCompactList}\small\item\em Initializes static memory instance. \end{DoxyCompactList}\item 
+void $\ast$ \hyperlink{group__mem__intf_ga2e2086778aa0eb21156044730a1f380b}{es\-S\-Mem\-Alloc\-I} (\hyperlink{group__mem__intf_gabf19a317cc22713cfb45ae1e43d34d7e}{es\-S\-Mem\-Handle\-\_\-\-T} $\ast$handle, size\-\_\-t size)
+\begin{DoxyCompactList}\small\item\em Allocates static memory of size {\ttfamily size}. \end{DoxyCompactList}\item 
+void $\ast$ \hyperlink{group__mem__intf_ga23c0a40e0c40dabed8c22d9d65709c65}{es\-S\-Mem\-Alloc} (\hyperlink{group__mem__intf_gabf19a317cc22713cfb45ae1e43d34d7e}{es\-S\-Mem\-Handle\-\_\-\-T} $\ast$handle, size\-\_\-t size)
+\begin{DoxyCompactList}\small\item\em Allocates static memory of size {\ttfamily size}. \end{DoxyCompactList}\item 
+void \hyperlink{group__mem__intf_ga87b817ce71357521c4cd43a9cb587201}{es\-S\-Mem\-Update\-Status\-I} (\hyperlink{group__mem__intf_gabf19a317cc22713cfb45ae1e43d34d7e}{es\-S\-Mem\-Handle\-\_\-\-T} $\ast$handle, \hyperlink{group__mem__intf_ga0eb568b68247d93e2db804a681de0e9e}{es\-Mem\-Status\-\_\-\-T} $\ast$status)
+\begin{DoxyCompactList}\small\item\em Returns various information about given memory instance. \end{DoxyCompactList}\item 
+void \hyperlink{group__mem__intf_gac0ad18ef5c9332358a4d0a5ded270f34}{es\-S\-Mem\-Update\-Status} (\hyperlink{group__mem__intf_gabf19a317cc22713cfb45ae1e43d34d7e}{es\-S\-Mem\-Handle\-\_\-\-T} $\ast$handle, \hyperlink{group__mem__intf_ga0eb568b68247d93e2db804a681de0e9e}{es\-Mem\-Status\-\_\-\-T} $\ast$status)
+\begin{DoxyCompactList}\small\item\em Returns various information about given memory instance. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsubsection*{Pool memory manager}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{group__mem__intf_gac151cf4385488838b0507936e67e2584}{es\-P\-Mem\-Init} (\hyperlink{group__mem__intf_gaf82f01d26c4f6bc9a2b672a673b09ce2}{es\-P\-Mem\-Handle\-\_\-\-T} $\ast$handle, void $\ast$pool, size\-\_\-t pool\-Size, size\-\_\-t block\-Size)
+\begin{DoxyCompactList}\small\item\em Initializes pool memory instance. \end{DoxyCompactList}\item 
+size\-\_\-t \hyperlink{group__mem__intf_gab82743b6c82847c748bf5193f0f211ec}{es\-P\-Mem\-Calc\-Pool\-Size} (size\-\_\-t blocks, size\-\_\-t block\-Size)
+\begin{DoxyCompactList}\small\item\em Calculates required reserved memory size for defined number of blocks. \end{DoxyCompactList}\item 
+void $\ast$ \hyperlink{group__mem__intf_gabdacce602565fcd6a186c2834cb74488}{es\-P\-Mem\-Alloc\-I} (\hyperlink{group__mem__intf_gaf82f01d26c4f6bc9a2b672a673b09ce2}{es\-P\-Mem\-Handle\-\_\-\-T} $\ast$handle)
+\begin{DoxyCompactList}\small\item\em Allocate one block from memory pool. \end{DoxyCompactList}\item 
+void $\ast$ \hyperlink{group__mem__intf_gac750c9ec7780f5dc616e8a04a6668f34}{es\-P\-Mem\-Alloc} (\hyperlink{group__mem__intf_gaf82f01d26c4f6bc9a2b672a673b09ce2}{es\-P\-Mem\-Handle\-\_\-\-T} $\ast$handle)
+\begin{DoxyCompactList}\small\item\em Allocate one block from memory pool. \end{DoxyCompactList}\item 
+void \hyperlink{group__mem__intf_ga2c0f1b135c5639809b17dfe44e06f1b5}{es\-P\-Mem\-De\-Alloc\-I} (\hyperlink{group__mem__intf_gaf82f01d26c4f6bc9a2b672a673b09ce2}{es\-P\-Mem\-Handle\-\_\-\-T} $\ast$handle, void $\ast$mem)
+\begin{DoxyCompactList}\small\item\em Oslobadja prethodno alocirani blok. \end{DoxyCompactList}\item 
+void \hyperlink{group__mem__intf_gacd393e705fe5531cae380cc9b68f7a23}{es\-P\-Mem\-De\-Alloc} (\hyperlink{group__mem__intf_gaf82f01d26c4f6bc9a2b672a673b09ce2}{es\-P\-Mem\-Handle\-\_\-\-T} $\ast$handle, void $\ast$mem)
+\begin{DoxyCompactList}\small\item\em Oslobadja prethodno alocirani blok. \end{DoxyCompactList}\item 
+void \hyperlink{group__mem__intf_gab568f5b51f11f2bc315412c35bfc28e9}{es\-P\-Mem\-Update\-Status\-I} (\hyperlink{group__mem__intf_gaf82f01d26c4f6bc9a2b672a673b09ce2}{es\-P\-Mem\-Handle\-\_\-\-T} $\ast$handle, \hyperlink{group__mem__intf_ga0eb568b68247d93e2db804a681de0e9e}{es\-Mem\-Status\-\_\-\-T} $\ast$status)
+\begin{DoxyCompactList}\small\item\em Vraca statusne informacije pool memorije. \end{DoxyCompactList}\item 
+void \hyperlink{group__mem__intf_ga8148d4ad98ed5e9ecc04b7983433555e}{es\-P\-Mem\-Update\-Status} (\hyperlink{group__mem__intf_gaf82f01d26c4f6bc9a2b672a673b09ce2}{es\-P\-Mem\-Handle\-\_\-\-T} $\ast$handle, \hyperlink{group__mem__intf_ga0eb568b68247d93e2db804a681de0e9e}{es\-Mem\-Status\-\_\-\-T} $\ast$status)
+\begin{DoxyCompactList}\small\item\em Vraca statusne informacije pool memorije. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsubsection*{Dynamic memory allocator}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{group__mem__intf_ga10ef80121c0c742b9ad81f24eff91c7f}{es\-D\-Mem\-Init} (\hyperlink{group__mem__intf_gacaaf771b18b3da8fa3b67a466390080e}{es\-D\-Mem\-Handle\-\_\-\-T} $\ast$handle, void $\ast$storage, size\-\_\-t storage\-Size)
+\begin{DoxyCompactList}\small\item\em Inicijalizuje dinamican memorijski alokator. \end{DoxyCompactList}\item 
+void $\ast$ \hyperlink{group__mem__intf_ga807a7d2e705b1802b7671c0c903611a6}{es\-D\-Mem\-Alloc\-I} (\hyperlink{group__mem__intf_gacaaf771b18b3da8fa3b67a466390080e}{es\-D\-Mem\-Handle\-\_\-\-T} $\ast$handle, size\-\_\-t size)
+\begin{DoxyCompactList}\small\item\em Dodeljuje memorijski prostor velicine {\ttfamily size}. \end{DoxyCompactList}\item 
+void $\ast$ \hyperlink{group__mem__intf_ga7aa5c1f6bda178e4860f0727b1fd3590}{es\-D\-Mem\-Alloc} (\hyperlink{group__mem__intf_gacaaf771b18b3da8fa3b67a466390080e}{es\-D\-Mem\-Handle\-\_\-\-T} $\ast$handle, size\-\_\-t size)
+\begin{DoxyCompactList}\small\item\em Dodeljuje memorijski prostor velicine {\ttfamily size}. \end{DoxyCompactList}\item 
+void \hyperlink{group__mem__intf_gad56192526f2b6ec1f927d21b15e1bc11}{es\-D\-Mem\-De\-Alloc\-I} (\hyperlink{group__mem__intf_gacaaf771b18b3da8fa3b67a466390080e}{es\-D\-Mem\-Handle\-\_\-\-T} $\ast$handle, void $\ast$mem)
+\begin{DoxyCompactList}\small\item\em Reciklira memorijski prostor na koji pokazije {\ttfamily mem} pokazivac. \end{DoxyCompactList}\item 
+void \hyperlink{group__mem__intf_gad63c5b88aae0a4626763d934fdcdc9d1}{es\-D\-Mem\-De\-Alloc} (\hyperlink{group__mem__intf_gacaaf771b18b3da8fa3b67a466390080e}{es\-D\-Mem\-Handle\-\_\-\-T} $\ast$handle, void $\ast$mem)
+\begin{DoxyCompactList}\small\item\em Reciklira memorijski prostor na koji pokazije {\ttfamily mem} pokazivac. \end{DoxyCompactList}\item 
+void \hyperlink{group__mem__intf_gad1bddd779876d000f8906ec7ac747fa4}{es\-D\-Mem\-Update\-Status\-I} (\hyperlink{group__mem__intf_gacaaf771b18b3da8fa3b67a466390080e}{es\-D\-Mem\-Handle\-\_\-\-T} $\ast$handle, \hyperlink{group__mem__intf_ga0eb568b68247d93e2db804a681de0e9e}{es\-Mem\-Status\-\_\-\-T} $\ast$status)
+\begin{DoxyCompactList}\small\item\em Vraca velicinu trenutno slobodne memorije u bajtovima. \end{DoxyCompactList}\item 
+void \hyperlink{group__mem__intf_ga22ab58d97d2519dccf91220f029ac87f}{es\-D\-Mem\-Update\-Status} (\hyperlink{group__mem__intf_gacaaf771b18b3da8fa3b67a466390080e}{es\-D\-Mem\-Handle\-\_\-\-T} $\ast$handle, \hyperlink{group__mem__intf_ga0eb568b68247d93e2db804a681de0e9e}{es\-Mem\-Status\-\_\-\-T} $\ast$status)
+\begin{DoxyCompactList}\small\item\em Vraca velicinu trenutno slobodne memorije u bajtovima. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsubsection{Detailed Description}
+Memory Management A\-P\-I. This module implements three classes of memory managers\-:
+\begin{DoxyItemize}
+\item dynamic
+\item pool
+\item static For more details see \hyperlink{group__mem}{Memory management}. 
+\end{DoxyItemize}
+
+\subsubsection{Typedef Documentation}
+\hypertarget{group__mem__intf_ga0eb568b68247d93e2db804a681de0e9e}{\index{A\-P\-I@{A\-P\-I}!es\-Mem\-Status\-\_\-\-T@{es\-Mem\-Status\-\_\-\-T}}
+\index{es\-Mem\-Status\-\_\-\-T@{es\-Mem\-Status\-\_\-\-T}!API@{A\-P\-I}}
+\paragraph[{es\-Mem\-Status\-\_\-\-T}]{\setlength{\rightskip}{0pt plus 5cm}typedef struct {\bf es\-Mem\-Status} {\bf es\-Mem\-Status\-\_\-\-T}}}\label{group__mem__intf_ga0eb568b68247d93e2db804a681de0e9e}
+
+
+Memory status type. 
+
+\begin{DoxyParagraph}{Object class\-:}
+Regular {\bfseries A\-P\-I} object, this object is part of the application programming interface. 
+\end{DoxyParagraph}
+\hypertarget{group__mem__intf_gabf19a317cc22713cfb45ae1e43d34d7e}{\index{A\-P\-I@{A\-P\-I}!es\-S\-Mem\-Handle\-\_\-\-T@{es\-S\-Mem\-Handle\-\_\-\-T}}
+\index{es\-S\-Mem\-Handle\-\_\-\-T@{es\-S\-Mem\-Handle\-\_\-\-T}!API@{A\-P\-I}}
+\paragraph[{es\-S\-Mem\-Handle\-\_\-\-T}]{\setlength{\rightskip}{0pt plus 5cm}typedef struct {\bf es\-S\-Mem\-Handle} {\bf es\-S\-Mem\-Handle\-\_\-\-T}}}\label{group__mem__intf_gabf19a317cc22713cfb45ae1e43d34d7e}
+
+
+Static memory instance handle type. 
+
+\begin{DoxyParagraph}{Object class\-:}
+Regular {\bfseries A\-P\-I} object, this object is part of the application programming interface. 
+\end{DoxyParagraph}
+\hypertarget{group__mem__intf_gaf82f01d26c4f6bc9a2b672a673b09ce2}{\index{A\-P\-I@{A\-P\-I}!es\-P\-Mem\-Handle\-\_\-\-T@{es\-P\-Mem\-Handle\-\_\-\-T}}
+\index{es\-P\-Mem\-Handle\-\_\-\-T@{es\-P\-Mem\-Handle\-\_\-\-T}!API@{A\-P\-I}}
+\paragraph[{es\-P\-Mem\-Handle\-\_\-\-T}]{\setlength{\rightskip}{0pt plus 5cm}typedef struct {\bf es\-P\-Mem\-Handle} {\bf es\-P\-Mem\-Handle\-\_\-\-T}}}\label{group__mem__intf_gaf82f01d26c4f6bc9a2b672a673b09ce2}
+
+
+Pool memory instance handle type. 
+
+\begin{DoxyParagraph}{Object class\-:}
+Regular {\bfseries A\-P\-I} object, this object is part of the application programming interface. 
+\end{DoxyParagraph}
+\hypertarget{group__mem__intf_gacaaf771b18b3da8fa3b67a466390080e}{\index{A\-P\-I@{A\-P\-I}!es\-D\-Mem\-Handle\-\_\-\-T@{es\-D\-Mem\-Handle\-\_\-\-T}}
+\index{es\-D\-Mem\-Handle\-\_\-\-T@{es\-D\-Mem\-Handle\-\_\-\-T}!API@{A\-P\-I}}
+\paragraph[{es\-D\-Mem\-Handle\-\_\-\-T}]{\setlength{\rightskip}{0pt plus 5cm}typedef struct {\bf es\-D\-Mem\-Handle} {\bf es\-D\-Mem\-Handle\-\_\-\-T}}}\label{group__mem__intf_gacaaf771b18b3da8fa3b67a466390080e}
+
+
+Dynamic memory instance handle type. 
+
+\begin{DoxyParagraph}{Object class\-:}
+Regular {\bfseries A\-P\-I} object, this object is part of the application programming interface. 
+\end{DoxyParagraph}
+
+
+\subsubsection{Function Documentation}
+\hypertarget{group__mem__intf_ga53acef4ba27e5e401ac2e1f862e07a8b}{\index{A\-P\-I@{A\-P\-I}!es\-S\-Mem\-Init@{es\-S\-Mem\-Init}}
+\index{es\-S\-Mem\-Init@{es\-S\-Mem\-Init}!API@{A\-P\-I}}
+\paragraph[{es\-S\-Mem\-Init}]{\setlength{\rightskip}{0pt plus 5cm}void es\-S\-Mem\-Init (
+\begin{DoxyParamCaption}
+\item[{{\bf es\-S\-Mem\-Handle\-\_\-\-T} $\ast$}]{handle, }
+\item[{void $\ast$}]{storage, }
+\item[{size\-\_\-t}]{storage\-Size}
+\end{DoxyParamCaption}
+)}}\label{group__mem__intf_ga53acef4ba27e5e401ac2e1f862e07a8b}
+
+
+Initializes static memory instance. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em handle} & Pointer to handle type variable, see \hyperlink{group__mem__intf_gabf19a317cc22713cfb45ae1e43d34d7e}{es\-S\-Mem\-Handle\-\_\-\-T}. \\
+\hline
+{\em storage} & Storage memory reserved for static memory manager. \\
+\hline
+{\em storage\-Size} & Size of reserved memory expresses in bytes.\\
+\hline
+\end{DoxyParams}
+This function shall be called before any other static memory management function. \begin{DoxyParagraph}{Object class\-:}
+Regular {\bfseries A\-P\-I} object, this object is part of the application programming interface. 
+\end{DoxyParagraph}
+\begin{Desc}
+\item[Examples\-: ]\par
+\hyperlink{dmem_init2_8c-example}{dmem\-\_\-init2.\-c}, \hyperlink{dmem_two_buffs_8c-example}{dmem\-\_\-two\-\_\-buffs.\-c}, \hyperlink{pmem_init2_8c-example}{pmem\-\_\-init2.\-c}, and \hyperlink{pmem_init3_8c-example}{pmem\-\_\-init3.\-c}.\end{Desc}
+\hypertarget{group__mem__intf_ga2e2086778aa0eb21156044730a1f380b}{\index{A\-P\-I@{A\-P\-I}!es\-S\-Mem\-Alloc\-I@{es\-S\-Mem\-Alloc\-I}}
+\index{es\-S\-Mem\-Alloc\-I@{es\-S\-Mem\-Alloc\-I}!API@{A\-P\-I}}
+\paragraph[{es\-S\-Mem\-Alloc\-I}]{\setlength{\rightskip}{0pt plus 5cm}void$\ast$ es\-S\-Mem\-Alloc\-I (
+\begin{DoxyParamCaption}
+\item[{{\bf es\-S\-Mem\-Handle\-\_\-\-T} $\ast$}]{handle, }
+\item[{size\-\_\-t}]{size}
+\end{DoxyParamCaption}
+)}}\label{group__mem__intf_ga2e2086778aa0eb21156044730a1f380b}
+
+
+Allocates static memory of size {\ttfamily size}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em handle} & Pointer to static memory instance, see \hyperlink{group__mem__intf_gabf19a317cc22713cfb45ae1e43d34d7e}{es\-S\-Mem\-Handle\-\_\-\-T}. \\
+\hline
+{\em size} & The size of requested memory in bytes. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Pointer to free memory of requested size. 
+\end{DoxyReturn}
+\begin{DoxyParagraph}{Function class\-:}
+{\bfseries I class}, Interrupt-\/lock A\-P\-I function, this function can be called only from interrupts locked code sections. 
+\end{DoxyParagraph}
+\begin{Desc}
+\item[Examples\-: ]\par
+\hyperlink{dmem_init2_8c-example}{dmem\-\_\-init2.\-c}, \hyperlink{dmem_two_buffs_8c-example}{dmem\-\_\-two\-\_\-buffs.\-c}, \hyperlink{pmem_init2_8c-example}{pmem\-\_\-init2.\-c}, and \hyperlink{pmem_init3_8c-example}{pmem\-\_\-init3.\-c}.\end{Desc}
+\hypertarget{group__mem__intf_ga23c0a40e0c40dabed8c22d9d65709c65}{\index{A\-P\-I@{A\-P\-I}!es\-S\-Mem\-Alloc@{es\-S\-Mem\-Alloc}}
+\index{es\-S\-Mem\-Alloc@{es\-S\-Mem\-Alloc}!API@{A\-P\-I}}
+\paragraph[{es\-S\-Mem\-Alloc}]{\setlength{\rightskip}{0pt plus 5cm}void$\ast$ es\-S\-Mem\-Alloc (
+\begin{DoxyParamCaption}
+\item[{{\bf es\-S\-Mem\-Handle\-\_\-\-T} $\ast$}]{handle, }
+\item[{size\-\_\-t}]{size}
+\end{DoxyParamCaption}
+)}}\label{group__mem__intf_ga23c0a40e0c40dabed8c22d9d65709c65}
+
+
+Allocates static memory of size {\ttfamily size}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em handle} & Pointer to static memory instance, see \hyperlink{group__mem__intf_gabf19a317cc22713cfb45ae1e43d34d7e}{es\-S\-Mem\-Handle\-\_\-\-T}. \\
+\hline
+{\em size} & The size of requested memory in bytes. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Pointer to free memory of requested size. 
+\end{DoxyReturn}
+\begin{DoxyParagraph}{Object class\-:}
+Regular {\bfseries A\-P\-I} object, this object is part of the application programming interface. 
+\end{DoxyParagraph}
+\hypertarget{group__mem__intf_ga87b817ce71357521c4cd43a9cb587201}{\index{A\-P\-I@{A\-P\-I}!es\-S\-Mem\-Update\-Status\-I@{es\-S\-Mem\-Update\-Status\-I}}
+\index{es\-S\-Mem\-Update\-Status\-I@{es\-S\-Mem\-Update\-Status\-I}!API@{A\-P\-I}}
+\paragraph[{es\-S\-Mem\-Update\-Status\-I}]{\setlength{\rightskip}{0pt plus 5cm}void es\-S\-Mem\-Update\-Status\-I (
+\begin{DoxyParamCaption}
+\item[{{\bf es\-S\-Mem\-Handle\-\_\-\-T} $\ast$}]{handle, }
+\item[{{\bf es\-Mem\-Status\-\_\-\-T} $\ast$}]{status}
+\end{DoxyParamCaption}
+)}}\label{group__mem__intf_ga87b817ce71357521c4cd43a9cb587201}
+
+
+Returns various information about given memory instance. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em handle} & Pointer to static memory instance, see \hyperlink{group__mem__intf_gabf19a317cc22713cfb45ae1e43d34d7e}{es\-S\-Mem\-Handle\-\_\-\-T}. \\
+\hline
+{\em status} & Pointer to memory status type, see \hyperlink{group__mem__intf_ga0eb568b68247d93e2db804a681de0e9e}{es\-Mem\-Status\-\_\-\-T}. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{Function class\-:}
+{\bfseries I class}, Interrupt-\/lock A\-P\-I function, this function can be called only from interrupts locked code sections. 
+\end{DoxyParagraph}
+\hypertarget{group__mem__intf_gac0ad18ef5c9332358a4d0a5ded270f34}{\index{A\-P\-I@{A\-P\-I}!es\-S\-Mem\-Update\-Status@{es\-S\-Mem\-Update\-Status}}
+\index{es\-S\-Mem\-Update\-Status@{es\-S\-Mem\-Update\-Status}!API@{A\-P\-I}}
+\paragraph[{es\-S\-Mem\-Update\-Status}]{\setlength{\rightskip}{0pt plus 5cm}void es\-S\-Mem\-Update\-Status (
+\begin{DoxyParamCaption}
+\item[{{\bf es\-S\-Mem\-Handle\-\_\-\-T} $\ast$}]{handle, }
+\item[{{\bf es\-Mem\-Status\-\_\-\-T} $\ast$}]{status}
+\end{DoxyParamCaption}
+)}}\label{group__mem__intf_gac0ad18ef5c9332358a4d0a5ded270f34}
+
+
+Returns various information about given memory instance. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em handle} & Pointer to static memory instance, see \hyperlink{group__mem__intf_gabf19a317cc22713cfb45ae1e43d34d7e}{es\-S\-Mem\-Handle\-\_\-\-T}. \\
+\hline
+{\em status} & Pointer to memory status type, see \hyperlink{group__mem__intf_ga0eb568b68247d93e2db804a681de0e9e}{es\-Mem\-Status\-\_\-\-T}. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{Object class\-:}
+Regular {\bfseries A\-P\-I} object, this object is part of the application programming interface. 
+\end{DoxyParagraph}
+\hypertarget{group__mem__intf_gac151cf4385488838b0507936e67e2584}{\index{A\-P\-I@{A\-P\-I}!es\-P\-Mem\-Init@{es\-P\-Mem\-Init}}
+\index{es\-P\-Mem\-Init@{es\-P\-Mem\-Init}!API@{A\-P\-I}}
+\paragraph[{es\-P\-Mem\-Init}]{\setlength{\rightskip}{0pt plus 5cm}void es\-P\-Mem\-Init (
+\begin{DoxyParamCaption}
+\item[{{\bf es\-P\-Mem\-Handle\-\_\-\-T} $\ast$}]{handle, }
+\item[{void $\ast$}]{pool, }
+\item[{size\-\_\-t}]{pool\-Size, }
+\item[{size\-\_\-t}]{block\-Size}
+\end{DoxyParamCaption}
+)}}\label{group__mem__intf_gac151cf4385488838b0507936e67e2584}
+
+
+Initializes pool memory instance. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em handle} & Pointer to pool memory instance, see \hyperlink{group__mem__intf_gaf82f01d26c4f6bc9a2b672a673b09ce2}{es\-P\-Mem\-Handle\-\_\-\-T}. \\
+\hline
+{\em pool} & Reserved memory area for pool allocator. \\
+\hline
+{\em pool\-Size} & The size of reserved memory area expressed in bytes. \\
+\hline
+{\em block\-Size} & The size of one block expressed in bytes.\\
+\hline
+\end{DoxyParams}
+This function must be called before any call to \hyperlink{group__mem__intf_gabdacce602565fcd6a186c2834cb74488}{es\-P\-Mem\-Alloc\-I()} or \hyperlink{group__mem__intf_gac750c9ec7780f5dc616e8a04a6668f34}{es\-P\-Mem\-Alloc()}. \begin{DoxyWarning}{Warning}
+Pointers to {\ttfamily handle} and {\ttfamily pool} must be aligned to C\-P\-U defined alignment. 
+\end{DoxyWarning}
+\begin{DoxyParagraph}{Object class\-:}
+Regular {\bfseries A\-P\-I} object, this object is part of the application programming interface. 
+\end{DoxyParagraph}
+\begin{Desc}
+\item[Examples\-: ]\par
+\hyperlink{pmem_init1_8c-example}{pmem\-\_\-init1.\-c}, \hyperlink{pmem_init2_8c-example}{pmem\-\_\-init2.\-c}, \hyperlink{pmem_init3_8c-example}{pmem\-\_\-init3.\-c}, and \hyperlink{pmem_two_buffs_8c-example}{pmem\-\_\-two\-\_\-buffs.\-c}.\end{Desc}
+\hypertarget{group__mem__intf_gab82743b6c82847c748bf5193f0f211ec}{\index{A\-P\-I@{A\-P\-I}!es\-P\-Mem\-Calc\-Pool\-Size@{es\-P\-Mem\-Calc\-Pool\-Size}}
+\index{es\-P\-Mem\-Calc\-Pool\-Size@{es\-P\-Mem\-Calc\-Pool\-Size}!API@{A\-P\-I}}
+\paragraph[{es\-P\-Mem\-Calc\-Pool\-Size}]{\setlength{\rightskip}{0pt plus 5cm}size\-\_\-t es\-P\-Mem\-Calc\-Pool\-Size (
+\begin{DoxyParamCaption}
+\item[{size\-\_\-t}]{blocks, }
+\item[{size\-\_\-t}]{block\-Size}
+\end{DoxyParamCaption}
+)}}\label{group__mem__intf_gab82743b6c82847c748bf5193f0f211ec}
+
+
+Calculates required reserved memory size for defined number of blocks. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em blocks} & Number of required blocks. \\
+\hline
+{\em block\-Size} & The size of one block. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Required reserved memory size. 
+\end{DoxyReturn}
+\begin{DoxyParagraph}{Object class\-:}
+Regular {\bfseries A\-P\-I} object, this object is part of the application programming interface. 
+\end{DoxyParagraph}
+\begin{Desc}
+\item[Examples\-: ]\par
+\hyperlink{pmem_init3_8c-example}{pmem\-\_\-init3.\-c}.\end{Desc}
+\hypertarget{group__mem__intf_gabdacce602565fcd6a186c2834cb74488}{\index{A\-P\-I@{A\-P\-I}!es\-P\-Mem\-Alloc\-I@{es\-P\-Mem\-Alloc\-I}}
+\index{es\-P\-Mem\-Alloc\-I@{es\-P\-Mem\-Alloc\-I}!API@{A\-P\-I}}
+\paragraph[{es\-P\-Mem\-Alloc\-I}]{\setlength{\rightskip}{0pt plus 5cm}void$\ast$ es\-P\-Mem\-Alloc\-I (
+\begin{DoxyParamCaption}
+\item[{{\bf es\-P\-Mem\-Handle\-\_\-\-T} $\ast$}]{handle}
+\end{DoxyParamCaption}
+)}}\label{group__mem__intf_gabdacce602565fcd6a186c2834cb74488}
+
+
+Allocate one block from memory pool. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em handle} & Pointer to pool memory instance, see \hyperlink{group__mem__intf_gaf82f01d26c4f6bc9a2b672a673b09ce2}{es\-P\-Mem\-Handle\-\_\-\-T}. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Pointer to requested block. 
+\end{DoxyReturn}
+\begin{DoxyParagraph}{Function class\-:}
+{\bfseries I class}, Interrupt-\/lock A\-P\-I function, this function can be called only from interrupts locked code sections. 
+\end{DoxyParagraph}
+\begin{Desc}
+\item[Examples\-: ]\par
+\hyperlink{pmem_init1_8c-example}{pmem\-\_\-init1.\-c}, \hyperlink{pmem_init2_8c-example}{pmem\-\_\-init2.\-c}, \hyperlink{pmem_init3_8c-example}{pmem\-\_\-init3.\-c}, and \hyperlink{pmem_two_buffs_8c-example}{pmem\-\_\-two\-\_\-buffs.\-c}.\end{Desc}
+\hypertarget{group__mem__intf_gac750c9ec7780f5dc616e8a04a6668f34}{\index{A\-P\-I@{A\-P\-I}!es\-P\-Mem\-Alloc@{es\-P\-Mem\-Alloc}}
+\index{es\-P\-Mem\-Alloc@{es\-P\-Mem\-Alloc}!API@{A\-P\-I}}
+\paragraph[{es\-P\-Mem\-Alloc}]{\setlength{\rightskip}{0pt plus 5cm}void$\ast$ es\-P\-Mem\-Alloc (
+\begin{DoxyParamCaption}
+\item[{{\bf es\-P\-Mem\-Handle\-\_\-\-T} $\ast$}]{handle}
+\end{DoxyParamCaption}
+)}}\label{group__mem__intf_gac750c9ec7780f5dc616e8a04a6668f34}
+
+
+Allocate one block from memory pool. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em handle} & Pointer to pool memory instance, see \hyperlink{group__mem__intf_gaf82f01d26c4f6bc9a2b672a673b09ce2}{es\-P\-Mem\-Handle\-\_\-\-T}. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Pointer to requested block. 
+\end{DoxyReturn}
+\begin{DoxyParagraph}{Object class\-:}
+Regular {\bfseries A\-P\-I} object, this object is part of the application programming interface. 
+\end{DoxyParagraph}
+\hypertarget{group__mem__intf_ga2c0f1b135c5639809b17dfe44e06f1b5}{\index{A\-P\-I@{A\-P\-I}!es\-P\-Mem\-De\-Alloc\-I@{es\-P\-Mem\-De\-Alloc\-I}}
+\index{es\-P\-Mem\-De\-Alloc\-I@{es\-P\-Mem\-De\-Alloc\-I}!API@{A\-P\-I}}
+\paragraph[{es\-P\-Mem\-De\-Alloc\-I}]{\setlength{\rightskip}{0pt plus 5cm}void es\-P\-Mem\-De\-Alloc\-I (
+\begin{DoxyParamCaption}
+\item[{{\bf es\-P\-Mem\-Handle\-\_\-\-T} $\ast$}]{handle, }
+\item[{void $\ast$}]{mem}
+\end{DoxyParamCaption}
+)}}\label{group__mem__intf_ga2c0f1b135c5639809b17dfe44e06f1b5}
+
+
+Oslobadja prethodno alocirani blok. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em handle} & Deskriptor pool alokatora \\
+\hline
+\mbox{\tt in}  & {\em mem} & Prethodno alociran blok memorije \\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{Function class\-:}
+{\bfseries I class}, Interrupt-\/lock A\-P\-I function, this function can be called only from interrupts locked code sections. 
+\end{DoxyParagraph}
+\begin{Desc}
+\item[Examples\-: ]\par
+\hyperlink{pmem_init1_8c-example}{pmem\-\_\-init1.\-c}, \hyperlink{pmem_init2_8c-example}{pmem\-\_\-init2.\-c}, \hyperlink{pmem_init3_8c-example}{pmem\-\_\-init3.\-c}, and \hyperlink{pmem_two_buffs_8c-example}{pmem\-\_\-two\-\_\-buffs.\-c}.\end{Desc}
+\hypertarget{group__mem__intf_gacd393e705fe5531cae380cc9b68f7a23}{\index{A\-P\-I@{A\-P\-I}!es\-P\-Mem\-De\-Alloc@{es\-P\-Mem\-De\-Alloc}}
+\index{es\-P\-Mem\-De\-Alloc@{es\-P\-Mem\-De\-Alloc}!API@{A\-P\-I}}
+\paragraph[{es\-P\-Mem\-De\-Alloc}]{\setlength{\rightskip}{0pt plus 5cm}void es\-P\-Mem\-De\-Alloc (
+\begin{DoxyParamCaption}
+\item[{{\bf es\-P\-Mem\-Handle\-\_\-\-T} $\ast$}]{handle, }
+\item[{void $\ast$}]{mem}
+\end{DoxyParamCaption}
+)}}\label{group__mem__intf_gacd393e705fe5531cae380cc9b68f7a23}
+
+
+Oslobadja prethodno alocirani blok. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em handle} & Deskriptor pool alokatora \\
+\hline
+\mbox{\tt in}  & {\em mem} & Prethodno alociran blok memorije \\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+Funkcija koristi makroe O\-P\-T\-\_\-\-G\-U\-A\-R\-D\-\_\-\-L\-O\-C\-K i O\-P\-T\-\_\-\-G\-U\-A\-R\-D\-\_\-\-U\-N\-L\-O\-C\-K za zastitu memorije od istovremenog pristupa. 
+\end{DoxyNote}
+\begin{DoxyParagraph}{Object class\-:}
+Regular {\bfseries A\-P\-I} object, this object is part of the application programming interface. 
+\end{DoxyParagraph}
+\hypertarget{group__mem__intf_gab568f5b51f11f2bc315412c35bfc28e9}{\index{A\-P\-I@{A\-P\-I}!es\-P\-Mem\-Update\-Status\-I@{es\-P\-Mem\-Update\-Status\-I}}
+\index{es\-P\-Mem\-Update\-Status\-I@{es\-P\-Mem\-Update\-Status\-I}!API@{A\-P\-I}}
+\paragraph[{es\-P\-Mem\-Update\-Status\-I}]{\setlength{\rightskip}{0pt plus 5cm}void es\-P\-Mem\-Update\-Status\-I (
+\begin{DoxyParamCaption}
+\item[{{\bf es\-P\-Mem\-Handle\-\_\-\-T} $\ast$}]{handle, }
+\item[{{\bf es\-Mem\-Status\-\_\-\-T} $\ast$}]{status}
+\end{DoxyParamCaption}
+)}}\label{group__mem__intf_gab568f5b51f11f2bc315412c35bfc28e9}
+
+
+Vraca statusne informacije pool memorije. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em handle} & Deskriptor pool alokatora \\
+\hline
+\mbox{\tt out}  & {\em status} & Status struktura pool alokatora \\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{Function class\-:}
+{\bfseries I class}, Interrupt-\/lock A\-P\-I function, this function can be called only from interrupts locked code sections. 
+\end{DoxyParagraph}
+\hypertarget{group__mem__intf_ga8148d4ad98ed5e9ecc04b7983433555e}{\index{A\-P\-I@{A\-P\-I}!es\-P\-Mem\-Update\-Status@{es\-P\-Mem\-Update\-Status}}
+\index{es\-P\-Mem\-Update\-Status@{es\-P\-Mem\-Update\-Status}!API@{A\-P\-I}}
+\paragraph[{es\-P\-Mem\-Update\-Status}]{\setlength{\rightskip}{0pt plus 5cm}void es\-P\-Mem\-Update\-Status (
+\begin{DoxyParamCaption}
+\item[{{\bf es\-P\-Mem\-Handle\-\_\-\-T} $\ast$}]{handle, }
+\item[{{\bf es\-Mem\-Status\-\_\-\-T} $\ast$}]{status}
+\end{DoxyParamCaption}
+)}}\label{group__mem__intf_ga8148d4ad98ed5e9ecc04b7983433555e}
+
+
+Vraca statusne informacije pool memorije. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em handle} & Deskriptor pool alokatora \\
+\hline
+\mbox{\tt out}  & {\em status} & Status struktura pool alokatora \\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{Object class\-:}
+Regular {\bfseries A\-P\-I} object, this object is part of the application programming interface. 
+\end{DoxyParagraph}
+\hypertarget{group__mem__intf_ga10ef80121c0c742b9ad81f24eff91c7f}{\index{A\-P\-I@{A\-P\-I}!es\-D\-Mem\-Init@{es\-D\-Mem\-Init}}
+\index{es\-D\-Mem\-Init@{es\-D\-Mem\-Init}!API@{A\-P\-I}}
+\paragraph[{es\-D\-Mem\-Init}]{\setlength{\rightskip}{0pt plus 5cm}void es\-D\-Mem\-Init (
+\begin{DoxyParamCaption}
+\item[{{\bf es\-D\-Mem\-Handle\-\_\-\-T} $\ast$}]{handle, }
+\item[{void $\ast$}]{storage, }
+\item[{size\-\_\-t}]{storage\-Size}
+\end{DoxyParamCaption}
+)}}\label{group__mem__intf_ga10ef80121c0c742b9ad81f24eff91c7f}
+
+
+Inicijalizuje dinamican memorijski alokator. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt out}  & {\em handle} & Deskriptor dinamickog alokatora \\
+\hline
+\mbox{\tt in}  & {\em storage} & Predefinisani memorijski prostor koji se predaje dinamickom alokatoru na koriscenje \\
+\hline
+ & {\em storage\-Size} & Velicina memorijskog prostora u bajtovima\\
+\hline
+\end{DoxyParams}
+Ova funkcija se mora pozvati pre koriscenja funkcija dinamickog memorijskog alokatora. \begin{DoxyWarning}{Warning}
+Funkcija zahteva da pokazivaci handle i pool budu poravnani (aligned). Ukoliko se koriste e\-Solid alokatori za instaciranje {\ttfamily handle} strukture i {\ttfamily pool\-Storage} onda je poravnani pristup osiguran. 
+
+Funkcija zahteva da velicina memorijskog prostora {\ttfamily storage\-Size} bude poravnana (aligned). Na primer za 32-\/bitni procesor (poravnanje 4 bajta)\-: ako je {\ttfamily storage\-Size} == 313 onda je potrebno poravnati na sledecu vecu vrednost koja je deljiva sa 4, u ovom slucaju ce to biti 316. 
+\end{DoxyWarning}
+\begin{DoxyParagraph}{Object class\-:}
+Regular {\bfseries A\-P\-I} object, this object is part of the application programming interface. 
+\end{DoxyParagraph}
+\begin{Desc}
+\item[Examples\-: ]\par
+\hyperlink{dmem_init1_8c-example}{dmem\-\_\-init1.\-c}, \hyperlink{dmem_init2_8c-example}{dmem\-\_\-init2.\-c}, and \hyperlink{dmem_two_buffs_8c-example}{dmem\-\_\-two\-\_\-buffs.\-c}.\end{Desc}
+\hypertarget{group__mem__intf_ga807a7d2e705b1802b7671c0c903611a6}{\index{A\-P\-I@{A\-P\-I}!es\-D\-Mem\-Alloc\-I@{es\-D\-Mem\-Alloc\-I}}
+\index{es\-D\-Mem\-Alloc\-I@{es\-D\-Mem\-Alloc\-I}!API@{A\-P\-I}}
+\paragraph[{es\-D\-Mem\-Alloc\-I}]{\setlength{\rightskip}{0pt plus 5cm}void$\ast$ es\-D\-Mem\-Alloc\-I (
+\begin{DoxyParamCaption}
+\item[{{\bf es\-D\-Mem\-Handle\-\_\-\-T} $\ast$}]{handle, }
+\item[{size\-\_\-t}]{size}
+\end{DoxyParamCaption}
+)}}\label{group__mem__intf_ga807a7d2e705b1802b7671c0c903611a6}
+
+
+Dodeljuje memorijski prostor velicine {\ttfamily size}. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em handle} & Deskriptor dinamickog alokatora \\
+\hline
+ & {\em size} & Velicina zahtevanog memorijskog prostora u bajtovima. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Pokazivac na rezervisani memorijski blok.
+\end{DoxyReturn}
+U debug rezimu ova funkcija uvek vraca pokazivac, odnosno, ne moze se desiti da vrati N\-U\-L\-L pokazivac, kao sto nalaze standardna implementacija {\ttfamily malloc} C funkcije. Ukoliko se zahtevana memorija ne moze dobaviti generisace se A\-S\-S\-E\-R\-T greska. Kada se ne koristi debug rezim funkcija se ponasa u skladu sa standardom. \begin{DoxyParagraph}{Function class\-:}
+{\bfseries I class}, Interrupt-\/lock A\-P\-I function, this function can be called only from interrupts locked code sections. 
+\end{DoxyParagraph}
+\begin{Desc}
+\item[Examples\-: ]\par
+\hyperlink{dmem_init1_8c-example}{dmem\-\_\-init1.\-c}, \hyperlink{dmem_init2_8c-example}{dmem\-\_\-init2.\-c}, and \hyperlink{dmem_two_buffs_8c-example}{dmem\-\_\-two\-\_\-buffs.\-c}.\end{Desc}
+\hypertarget{group__mem__intf_ga7aa5c1f6bda178e4860f0727b1fd3590}{\index{A\-P\-I@{A\-P\-I}!es\-D\-Mem\-Alloc@{es\-D\-Mem\-Alloc}}
+\index{es\-D\-Mem\-Alloc@{es\-D\-Mem\-Alloc}!API@{A\-P\-I}}
+\paragraph[{es\-D\-Mem\-Alloc}]{\setlength{\rightskip}{0pt plus 5cm}void$\ast$ es\-D\-Mem\-Alloc (
+\begin{DoxyParamCaption}
+\item[{{\bf es\-D\-Mem\-Handle\-\_\-\-T} $\ast$}]{handle, }
+\item[{size\-\_\-t}]{size}
+\end{DoxyParamCaption}
+)}}\label{group__mem__intf_ga7aa5c1f6bda178e4860f0727b1fd3590}
+
+
+Dodeljuje memorijski prostor velicine {\ttfamily size}. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em handle} & Deskriptor dinamickog alokatora \\
+\hline
+ & {\em size} & Velicina zahtevanog memorijskog prostora u bajtovima. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Pokazivac na rezervisani memorijski blok.
+\end{DoxyReturn}
+U debug rezimu ova funkcija uvek vraca pokazivac, odnosno, ne moze se desiti da vrati N\-U\-L\-L pokazivac, kao sto nalaze standardna implementacija {\ttfamily malloc} C funkcije. Ukoliko se zahtevana memorija ne moze dobaviti generisace se A\-S\-S\-E\-R\-T greska. Kada se ne koristi debug rezim funkcija se ponasa u skladu sa standardom. \begin{DoxyNote}{Note}
+Funkcija koristi makroe O\-P\-T\-\_\-\-G\-U\-A\-R\-D\-\_\-\-L\-O\-C\-K i O\-P\-T\-\_\-\-G\-U\-A\-R\-D\-\_\-\-U\-N\-L\-O\-C\-K za zastitu memorije od istovremenog pristupa. 
+\end{DoxyNote}
+\begin{DoxyParagraph}{Object class\-:}
+Regular {\bfseries A\-P\-I} object, this object is part of the application programming interface. 
+\end{DoxyParagraph}
+\hypertarget{group__mem__intf_gad56192526f2b6ec1f927d21b15e1bc11}{\index{A\-P\-I@{A\-P\-I}!es\-D\-Mem\-De\-Alloc\-I@{es\-D\-Mem\-De\-Alloc\-I}}
+\index{es\-D\-Mem\-De\-Alloc\-I@{es\-D\-Mem\-De\-Alloc\-I}!API@{A\-P\-I}}
+\paragraph[{es\-D\-Mem\-De\-Alloc\-I}]{\setlength{\rightskip}{0pt plus 5cm}void es\-D\-Mem\-De\-Alloc\-I (
+\begin{DoxyParamCaption}
+\item[{{\bf es\-D\-Mem\-Handle\-\_\-\-T} $\ast$}]{handle, }
+\item[{void $\ast$}]{mem}
+\end{DoxyParamCaption}
+)}}\label{group__mem__intf_gad56192526f2b6ec1f927d21b15e1bc11}
+
+
+Reciklira memorijski prostor na koji pokazije {\ttfamily mem} pokazivac. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em handle} & Deskriptor dinamickog alokatora \\
+\hline
+\mbox{\tt in}  & {\em mem} & Pokazivac na prethodno dodeljen memorijski prostor. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{Function class\-:}
+{\bfseries I class}, Interrupt-\/lock A\-P\-I function, this function can be called only from interrupts locked code sections. 
+\end{DoxyParagraph}
+\begin{Desc}
+\item[Examples\-: ]\par
+\hyperlink{dmem_init1_8c-example}{dmem\-\_\-init1.\-c}, \hyperlink{dmem_init2_8c-example}{dmem\-\_\-init2.\-c}, and \hyperlink{dmem_two_buffs_8c-example}{dmem\-\_\-two\-\_\-buffs.\-c}.\end{Desc}
+\hypertarget{group__mem__intf_gad63c5b88aae0a4626763d934fdcdc9d1}{\index{A\-P\-I@{A\-P\-I}!es\-D\-Mem\-De\-Alloc@{es\-D\-Mem\-De\-Alloc}}
+\index{es\-D\-Mem\-De\-Alloc@{es\-D\-Mem\-De\-Alloc}!API@{A\-P\-I}}
+\paragraph[{es\-D\-Mem\-De\-Alloc}]{\setlength{\rightskip}{0pt plus 5cm}void es\-D\-Mem\-De\-Alloc (
+\begin{DoxyParamCaption}
+\item[{{\bf es\-D\-Mem\-Handle\-\_\-\-T} $\ast$}]{handle, }
+\item[{void $\ast$}]{mem}
+\end{DoxyParamCaption}
+)}}\label{group__mem__intf_gad63c5b88aae0a4626763d934fdcdc9d1}
+
+
+Reciklira memorijski prostor na koji pokazije {\ttfamily mem} pokazivac. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em handle} & Deskriptor dinamickog alokatora \\
+\hline
+\mbox{\tt in}  & {\em mem} & Pokazivac na prethodno dodeljen memorijski prostor. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+Funkcija koristi makroe O\-P\-T\-\_\-\-G\-U\-A\-R\-D\-\_\-\-L\-O\-C\-K i O\-P\-T\-\_\-\-G\-U\-A\-R\-D\-\_\-\-U\-N\-L\-O\-C\-K za zastitu memorije od istovremenog pristupa. 
+\end{DoxyNote}
+\begin{DoxyParagraph}{Object class\-:}
+Regular {\bfseries A\-P\-I} object, this object is part of the application programming interface. 
+\end{DoxyParagraph}
+\hypertarget{group__mem__intf_gad1bddd779876d000f8906ec7ac747fa4}{\index{A\-P\-I@{A\-P\-I}!es\-D\-Mem\-Update\-Status\-I@{es\-D\-Mem\-Update\-Status\-I}}
+\index{es\-D\-Mem\-Update\-Status\-I@{es\-D\-Mem\-Update\-Status\-I}!API@{A\-P\-I}}
+\paragraph[{es\-D\-Mem\-Update\-Status\-I}]{\setlength{\rightskip}{0pt plus 5cm}void es\-D\-Mem\-Update\-Status\-I (
+\begin{DoxyParamCaption}
+\item[{{\bf es\-D\-Mem\-Handle\-\_\-\-T} $\ast$}]{handle, }
+\item[{{\bf es\-Mem\-Status\-\_\-\-T} $\ast$}]{status}
+\end{DoxyParamCaption}
+)}}\label{group__mem__intf_gad1bddd779876d000f8906ec7ac747fa4}
+
+
+Vraca velicinu trenutno slobodne memorije u bajtovima. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em handle} & Deskriptor dinamickog alokatora \\
+\hline
+\mbox{\tt out}  & {\em status} & Status struktura dinamickog alokatora\\
+\hline
+\end{DoxyParams}
+Ukoliko je memorija jako fragmenitisana, sto je karakteristicno za first fir algoritam, moze se desiti da postoji dovoljno slobodne memorije, ali ne i bloka zahtevane velicine. U tom slucaju memorijski alokator nece biti u mogucnosti da ispuni zahtev. \begin{DoxyParagraph}{Function class\-:}
+{\bfseries I class}, Interrupt-\/lock A\-P\-I function, this function can be called only from interrupts locked code sections. 
+\end{DoxyParagraph}
+\hypertarget{group__mem__intf_ga22ab58d97d2519dccf91220f029ac87f}{\index{A\-P\-I@{A\-P\-I}!es\-D\-Mem\-Update\-Status@{es\-D\-Mem\-Update\-Status}}
+\index{es\-D\-Mem\-Update\-Status@{es\-D\-Mem\-Update\-Status}!API@{A\-P\-I}}
+\paragraph[{es\-D\-Mem\-Update\-Status}]{\setlength{\rightskip}{0pt plus 5cm}void es\-D\-Mem\-Update\-Status (
+\begin{DoxyParamCaption}
+\item[{{\bf es\-D\-Mem\-Handle\-\_\-\-T} $\ast$}]{handle, }
+\item[{{\bf es\-Mem\-Status\-\_\-\-T} $\ast$}]{status}
+\end{DoxyParamCaption}
+)}}\label{group__mem__intf_ga22ab58d97d2519dccf91220f029ac87f}
+
+
+Vraca velicinu trenutno slobodne memorije u bajtovima. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em handle} & Deskriptor dinamickog alokatora \\
+\hline
+\mbox{\tt out}  & {\em status} & Status struktura dinamickog alokatora\\
+\hline
+\end{DoxyParams}
+Ukoliko je memorija jako fragmenitisana, sto je karakteristicno za first fir algoritam, moze se desiti da postoji dovoljno slobodne memorije, ali ne i bloka zahtevane velicine. U tom slucaju memorijski alokator nece biti u mogucnosti da ispuni zahtev. \begin{DoxyParagraph}{Object class\-:}
+Regular {\bfseries A\-P\-I} object, this object is part of the application programming interface. 
+\end{DoxyParagraph}
+
+
+\subsubsection{Variable Documentation}
+\hypertarget{group__mem__intf_ga59214c7e13470c5e76c7b59c4f084b1c}{\index{A\-P\-I@{A\-P\-I}!Def\-S\-Mem\-Handle@{Def\-S\-Mem\-Handle}}
+\index{Def\-S\-Mem\-Handle@{Def\-S\-Mem\-Handle}!API@{A\-P\-I}}
+\paragraph[{Def\-S\-Mem\-Handle}]{\setlength{\rightskip}{0pt plus 5cm}{\bf es\-S\-Mem\-Handle\-\_\-\-T} Def\-S\-Mem\-Handle}}\label{group__mem__intf_ga59214c7e13470c5e76c7b59c4f084b1c}
+
+
+Default static memory handle. 
+
+\begin{DoxyParagraph}{Object class\-:}
+Regular {\bfseries A\-P\-I} object, this object is part of the application programming interface. 
+\end{DoxyParagraph}
+\hypertarget{group__mem__intf_gafb0dc701e9679157a617a091843bcd7f}{\index{A\-P\-I@{A\-P\-I}!Def\-P\-Mem\-Handle@{Def\-P\-Mem\-Handle}}
+\index{Def\-P\-Mem\-Handle@{Def\-P\-Mem\-Handle}!API@{A\-P\-I}}
+\paragraph[{Def\-P\-Mem\-Handle}]{\setlength{\rightskip}{0pt plus 5cm}{\bf es\-P\-Mem\-Handle\-\_\-\-T} Def\-P\-Mem\-Handle}}\label{group__mem__intf_gafb0dc701e9679157a617a091843bcd7f}
+
+
+Default pool memory handle. 
+
+\begin{DoxyParagraph}{Object class\-:}
+Regular {\bfseries A\-P\-I} object, this object is part of the application programming interface. 
+\end{DoxyParagraph}
+\hypertarget{group__mem__intf_gae2d3f8ca3b99ba0a5b9d9518a7bc280b}{\index{A\-P\-I@{A\-P\-I}!Def\-D\-Mem\-Handle@{Def\-D\-Mem\-Handle}}
+\index{Def\-D\-Mem\-Handle@{Def\-D\-Mem\-Handle}!API@{A\-P\-I}}
+\paragraph[{Def\-D\-Mem\-Handle}]{\setlength{\rightskip}{0pt plus 5cm}{\bf es\-D\-Mem\-Handle\-\_\-\-T} Def\-D\-Mem\-Handle}}\label{group__mem__intf_gae2d3f8ca3b99ba0a5b9d9518a7bc280b}
+
+
+Default dynamic memory handle. 
+
+\begin{DoxyParagraph}{Object class\-:}
+Regular {\bfseries A\-P\-I} object, this object is part of the application programming interface. 
+\end{DoxyParagraph}

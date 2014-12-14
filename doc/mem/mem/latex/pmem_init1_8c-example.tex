@@ -1,0 +1,46 @@
+\hypertarget{pmem_init1_8c-example}{\subsection{pmem\-\_\-init1.\-c}
+}
+This example creates a memory pool which holds 10 data\-Block structures. The pool is referenced with my\-Pool handle, and all pool data is hold in pool\-Storage\mbox{[}\mbox{]} array. Before using the pool it must be first initialized by \hyperlink{group__mem__intf_gac151cf4385488838b0507936e67e2584}{es\-P\-Mem\-Init()} function. After initialization all pool memory functions can be used. Note that pool memory created here cannot be destroyed.
+
+
+\begin{DoxyCodeInclude}
+\textcolor{preprocessor}{#include <stdint.h>}
+\textcolor{preprocessor}{#include "\hyperlink{mem_8h}{mem/mem.h}"}
+
+\textcolor{keyword}{struct }dataBlock \{                                          \textcolor{comment}{/* Some application data structure*/}
+    uint32\_t data01;
+    uint32\_t data02;
+    uint16\_t command;
+\};
+
+\textcolor{preprocessor}{#define POOL\_ELEMENTS                   10u                 }\textcolor{comment}{/* Specification of pool */}\textcolor{preprocessor}{}
+\textcolor{preprocessor}{}
+\textcolor{keywordtype}{int} main(
+    \textcolor{keywordtype}{void}) \{
+
+    \textcolor{keyword}{static} \hyperlink{structesPMemHandle}{esPMemHandle\_T} myPool;                           \textcolor{comment}{/* myPool pool handle */}
+    \textcolor{keyword}{static} \textcolor{keyword}{struct }dataBlock poolStorage[POOL\_ELEMENTS];     \textcolor{comment}{/* pool storage */}
+
+    \hyperlink{group__mem__intf_gac151cf4385488838b0507936e67e2584}{esPMemInit}(
+        &myPool,
+        &poolStorage,
+        \textcolor{keyword}{sizeof}(poolStorage),
+        \textcolor{keyword}{sizeof}(\textcolor{keyword}{struct} dataBlock));                          \textcolor{comment}{/* Initialize myPool pool memory */}
+
+    \textcolor{keywordflow}{while} (TRUE) \{
+        \textcolor{keyword}{struct }dataBlock * data;
+
+        data = \hyperlink{group__mem__intf_gabdacce602565fcd6a186c2834cb74488}{esPMemAllocI}(
+            &myPool);                                       \textcolor{comment}{/* Allocate a block from pool memory */}
+
+        \textcolor{comment}{/*}
+\textcolor{comment}{         * Do something}
+\textcolor{comment}{         */}
+
+        \hyperlink{group__mem__intf_ga2c0f1b135c5639809b17dfe44e06f1b5}{esPMemDeAllocI}(
+            &myPool,
+            data);                                          \textcolor{comment}{/* Return back the block */}
+    \}
+\}
+\end{DoxyCodeInclude}
+ 

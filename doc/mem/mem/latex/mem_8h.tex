@@ -1,0 +1,130 @@
+\hypertarget{mem_8h}{\subsection{mem.\-h File Reference}
+\label{mem_8h}\index{mem.\-h@{mem.\-h}}
+}
+
+
+Memory Management A\-P\-I.  
+
+
+{\ttfamily \#include \char`\"{}arch/compiler.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}arch/cpu.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}kernel/dbg.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}mem/mem\-\_\-cfg.\-h\char`\"{}}\\*
+Include dependency graph for mem.\-h\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{mem_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=126pt]{mem_8h__dep__incl}
+\end{center}
+\end{figure}
+\subsubsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{structesMemStatus}{es\-Mem\-Status}
+\begin{DoxyCompactList}\small\item\em Memory status structure. \end{DoxyCompactList}\item 
+struct \hyperlink{structesSMemHandle}{es\-S\-Mem\-Handle}
+\begin{DoxyCompactList}\small\item\em Static memory instance handle structure. \end{DoxyCompactList}\item 
+struct \hyperlink{structesPMemHandle}{es\-P\-Mem\-Handle}
+\begin{DoxyCompactList}\small\item\em Pool memory instance handle structure. \end{DoxyCompactList}\item 
+struct \hyperlink{structesDMemHandle}{es\-D\-Mem\-Handle}
+\begin{DoxyCompactList}\small\item\em Dynamic memory instance handle structure. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef struct \hyperlink{structesMemStatus}{es\-Mem\-Status} \hyperlink{group__mem__intf_ga0eb568b68247d93e2db804a681de0e9e}{es\-Mem\-Status\-\_\-\-T}
+\begin{DoxyCompactList}\small\item\em Memory status type. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{Indent}{\bf Static memory manager -\/ S\-Mem}\par
+\begin{DoxyCompactItemize}
+\item 
+typedef struct \hyperlink{structesSMemHandle}{es\-S\-Mem\-Handle} \hyperlink{group__mem__intf_gabf19a317cc22713cfb45ae1e43d34d7e}{es\-S\-Mem\-Handle\-\_\-\-T}
+\begin{DoxyCompactList}\small\item\em Static memory instance handle type. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}{\bf Pool memory allocator -\/ P\-Mem}\par
+\begin{DoxyCompactItemize}
+\item 
+typedef struct \hyperlink{structesPMemHandle}{es\-P\-Mem\-Handle} \hyperlink{group__mem__intf_gaf82f01d26c4f6bc9a2b672a673b09ce2}{es\-P\-Mem\-Handle\-\_\-\-T}
+\begin{DoxyCompactList}\small\item\em Pool memory instance handle type. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}{\bf Dynamic memory allocator -\/ D\-Mem}\par
+\begin{DoxyCompactItemize}
+\item 
+typedef struct \hyperlink{structesDMemHandle}{es\-D\-Mem\-Handle} \hyperlink{group__mem__intf_gacaaf771b18b3da8fa3b67a466390080e}{es\-D\-Mem\-Handle\-\_\-\-T}
+\begin{DoxyCompactList}\small\item\em Dynamic memory instance handle type. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsubsection*{Functions}
+\begin{Indent}{\bf Static memory manager}\par
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{group__mem__intf_ga53acef4ba27e5e401ac2e1f862e07a8b}{es\-S\-Mem\-Init} (\hyperlink{group__mem__intf_gabf19a317cc22713cfb45ae1e43d34d7e}{es\-S\-Mem\-Handle\-\_\-\-T} $\ast$handle, void $\ast$storage, size\-\_\-t storage\-Size)
+\begin{DoxyCompactList}\small\item\em Initializes static memory instance. \end{DoxyCompactList}\item 
+void $\ast$ \hyperlink{group__mem__intf_ga2e2086778aa0eb21156044730a1f380b}{es\-S\-Mem\-Alloc\-I} (\hyperlink{group__mem__intf_gabf19a317cc22713cfb45ae1e43d34d7e}{es\-S\-Mem\-Handle\-\_\-\-T} $\ast$handle, size\-\_\-t size)
+\begin{DoxyCompactList}\small\item\em Allocates static memory of size {\ttfamily size}. \end{DoxyCompactList}\item 
+void $\ast$ \hyperlink{group__mem__intf_ga23c0a40e0c40dabed8c22d9d65709c65}{es\-S\-Mem\-Alloc} (\hyperlink{group__mem__intf_gabf19a317cc22713cfb45ae1e43d34d7e}{es\-S\-Mem\-Handle\-\_\-\-T} $\ast$handle, size\-\_\-t size)
+\begin{DoxyCompactList}\small\item\em Allocates static memory of size {\ttfamily size}. \end{DoxyCompactList}\item 
+void \hyperlink{group__mem__intf_ga87b817ce71357521c4cd43a9cb587201}{es\-S\-Mem\-Update\-Status\-I} (\hyperlink{group__mem__intf_gabf19a317cc22713cfb45ae1e43d34d7e}{es\-S\-Mem\-Handle\-\_\-\-T} $\ast$handle, \hyperlink{group__mem__intf_ga0eb568b68247d93e2db804a681de0e9e}{es\-Mem\-Status\-\_\-\-T} $\ast$status)
+\begin{DoxyCompactList}\small\item\em Returns various information about given memory instance. \end{DoxyCompactList}\item 
+void \hyperlink{group__mem__intf_gac0ad18ef5c9332358a4d0a5ded270f34}{es\-S\-Mem\-Update\-Status} (\hyperlink{group__mem__intf_gabf19a317cc22713cfb45ae1e43d34d7e}{es\-S\-Mem\-Handle\-\_\-\-T} $\ast$handle, \hyperlink{group__mem__intf_ga0eb568b68247d93e2db804a681de0e9e}{es\-Mem\-Status\-\_\-\-T} $\ast$status)
+\begin{DoxyCompactList}\small\item\em Returns various information about given memory instance. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}{\bf Pool memory manager}\par
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{group__mem__intf_gac151cf4385488838b0507936e67e2584}{es\-P\-Mem\-Init} (\hyperlink{group__mem__intf_gaf82f01d26c4f6bc9a2b672a673b09ce2}{es\-P\-Mem\-Handle\-\_\-\-T} $\ast$handle, void $\ast$pool, size\-\_\-t pool\-Size, size\-\_\-t block\-Size)
+\begin{DoxyCompactList}\small\item\em Initializes pool memory instance. \end{DoxyCompactList}\item 
+size\-\_\-t \hyperlink{group__mem__intf_gab82743b6c82847c748bf5193f0f211ec}{es\-P\-Mem\-Calc\-Pool\-Size} (size\-\_\-t blocks, size\-\_\-t block\-Size)
+\begin{DoxyCompactList}\small\item\em Calculates required reserved memory size for defined number of blocks. \end{DoxyCompactList}\item 
+void $\ast$ \hyperlink{group__mem__intf_gabdacce602565fcd6a186c2834cb74488}{es\-P\-Mem\-Alloc\-I} (\hyperlink{group__mem__intf_gaf82f01d26c4f6bc9a2b672a673b09ce2}{es\-P\-Mem\-Handle\-\_\-\-T} $\ast$handle)
+\begin{DoxyCompactList}\small\item\em Allocate one block from memory pool. \end{DoxyCompactList}\item 
+void $\ast$ \hyperlink{group__mem__intf_gac750c9ec7780f5dc616e8a04a6668f34}{es\-P\-Mem\-Alloc} (\hyperlink{group__mem__intf_gaf82f01d26c4f6bc9a2b672a673b09ce2}{es\-P\-Mem\-Handle\-\_\-\-T} $\ast$handle)
+\begin{DoxyCompactList}\small\item\em Allocate one block from memory pool. \end{DoxyCompactList}\item 
+void \hyperlink{group__mem__intf_ga2c0f1b135c5639809b17dfe44e06f1b5}{es\-P\-Mem\-De\-Alloc\-I} (\hyperlink{group__mem__intf_gaf82f01d26c4f6bc9a2b672a673b09ce2}{es\-P\-Mem\-Handle\-\_\-\-T} $\ast$handle, void $\ast$mem)
+\begin{DoxyCompactList}\small\item\em Oslobadja prethodno alocirani blok. \end{DoxyCompactList}\item 
+void \hyperlink{group__mem__intf_gacd393e705fe5531cae380cc9b68f7a23}{es\-P\-Mem\-De\-Alloc} (\hyperlink{group__mem__intf_gaf82f01d26c4f6bc9a2b672a673b09ce2}{es\-P\-Mem\-Handle\-\_\-\-T} $\ast$handle, void $\ast$mem)
+\begin{DoxyCompactList}\small\item\em Oslobadja prethodno alocirani blok. \end{DoxyCompactList}\item 
+void \hyperlink{group__mem__intf_gab568f5b51f11f2bc315412c35bfc28e9}{es\-P\-Mem\-Update\-Status\-I} (\hyperlink{group__mem__intf_gaf82f01d26c4f6bc9a2b672a673b09ce2}{es\-P\-Mem\-Handle\-\_\-\-T} $\ast$handle, \hyperlink{group__mem__intf_ga0eb568b68247d93e2db804a681de0e9e}{es\-Mem\-Status\-\_\-\-T} $\ast$status)
+\begin{DoxyCompactList}\small\item\em Vraca statusne informacije pool memorije. \end{DoxyCompactList}\item 
+void \hyperlink{group__mem__intf_ga8148d4ad98ed5e9ecc04b7983433555e}{es\-P\-Mem\-Update\-Status} (\hyperlink{group__mem__intf_gaf82f01d26c4f6bc9a2b672a673b09ce2}{es\-P\-Mem\-Handle\-\_\-\-T} $\ast$handle, \hyperlink{group__mem__intf_ga0eb568b68247d93e2db804a681de0e9e}{es\-Mem\-Status\-\_\-\-T} $\ast$status)
+\begin{DoxyCompactList}\small\item\em Vraca statusne informacije pool memorije. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}{\bf Dynamic memory allocator}\par
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{group__mem__intf_ga10ef80121c0c742b9ad81f24eff91c7f}{es\-D\-Mem\-Init} (\hyperlink{group__mem__intf_gacaaf771b18b3da8fa3b67a466390080e}{es\-D\-Mem\-Handle\-\_\-\-T} $\ast$handle, void $\ast$storage, size\-\_\-t storage\-Size)
+\begin{DoxyCompactList}\small\item\em Inicijalizuje dinamican memorijski alokator. \end{DoxyCompactList}\item 
+void $\ast$ \hyperlink{group__mem__intf_ga807a7d2e705b1802b7671c0c903611a6}{es\-D\-Mem\-Alloc\-I} (\hyperlink{group__mem__intf_gacaaf771b18b3da8fa3b67a466390080e}{es\-D\-Mem\-Handle\-\_\-\-T} $\ast$handle, size\-\_\-t size)
+\begin{DoxyCompactList}\small\item\em Dodeljuje memorijski prostor velicine {\ttfamily size}. \end{DoxyCompactList}\item 
+void $\ast$ \hyperlink{group__mem__intf_ga7aa5c1f6bda178e4860f0727b1fd3590}{es\-D\-Mem\-Alloc} (\hyperlink{group__mem__intf_gacaaf771b18b3da8fa3b67a466390080e}{es\-D\-Mem\-Handle\-\_\-\-T} $\ast$handle, size\-\_\-t size)
+\begin{DoxyCompactList}\small\item\em Dodeljuje memorijski prostor velicine {\ttfamily size}. \end{DoxyCompactList}\item 
+void \hyperlink{group__mem__intf_gad56192526f2b6ec1f927d21b15e1bc11}{es\-D\-Mem\-De\-Alloc\-I} (\hyperlink{group__mem__intf_gacaaf771b18b3da8fa3b67a466390080e}{es\-D\-Mem\-Handle\-\_\-\-T} $\ast$handle, void $\ast$mem)
+\begin{DoxyCompactList}\small\item\em Reciklira memorijski prostor na koji pokazije {\ttfamily mem} pokazivac. \end{DoxyCompactList}\item 
+void \hyperlink{group__mem__intf_gad63c5b88aae0a4626763d934fdcdc9d1}{es\-D\-Mem\-De\-Alloc} (\hyperlink{group__mem__intf_gacaaf771b18b3da8fa3b67a466390080e}{es\-D\-Mem\-Handle\-\_\-\-T} $\ast$handle, void $\ast$mem)
+\begin{DoxyCompactList}\small\item\em Reciklira memorijski prostor na koji pokazije {\ttfamily mem} pokazivac. \end{DoxyCompactList}\item 
+void \hyperlink{group__mem__intf_gad1bddd779876d000f8906ec7ac747fa4}{es\-D\-Mem\-Update\-Status\-I} (\hyperlink{group__mem__intf_gacaaf771b18b3da8fa3b67a466390080e}{es\-D\-Mem\-Handle\-\_\-\-T} $\ast$handle, \hyperlink{group__mem__intf_ga0eb568b68247d93e2db804a681de0e9e}{es\-Mem\-Status\-\_\-\-T} $\ast$status)
+\begin{DoxyCompactList}\small\item\em Vraca velicinu trenutno slobodne memorije u bajtovima. \end{DoxyCompactList}\item 
+void \hyperlink{group__mem__intf_ga22ab58d97d2519dccf91220f029ac87f}{es\-D\-Mem\-Update\-Status} (\hyperlink{group__mem__intf_gacaaf771b18b3da8fa3b67a466390080e}{es\-D\-Mem\-Handle\-\_\-\-T} $\ast$handle, \hyperlink{group__mem__intf_ga0eb568b68247d93e2db804a681de0e9e}{es\-Mem\-Status\-\_\-\-T} $\ast$status)
+\begin{DoxyCompactList}\small\item\em Vraca velicinu trenutno slobodne memorije u bajtovima. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsubsection*{Variables}
+\begin{Indent}{\bf Default memory instance handles}\par
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{group__mem__intf_gabf19a317cc22713cfb45ae1e43d34d7e}{es\-S\-Mem\-Handle\-\_\-\-T} \hyperlink{group__mem__intf_ga59214c7e13470c5e76c7b59c4f084b1c}{Def\-S\-Mem\-Handle}
+\begin{DoxyCompactList}\small\item\em Default static memory handle. \end{DoxyCompactList}\item 
+\hyperlink{group__mem__intf_gaf82f01d26c4f6bc9a2b672a673b09ce2}{es\-P\-Mem\-Handle\-\_\-\-T} \hyperlink{group__mem__intf_gafb0dc701e9679157a617a091843bcd7f}{Def\-P\-Mem\-Handle}
+\begin{DoxyCompactList}\small\item\em Default pool memory handle. \end{DoxyCompactList}\item 
+\hyperlink{group__mem__intf_gacaaf771b18b3da8fa3b67a466390080e}{es\-D\-Mem\-Handle\-\_\-\-T} \hyperlink{group__mem__intf_gae2d3f8ca3b99ba0a5b9d9518a7bc280b}{Def\-D\-Mem\-Handle}
+\begin{DoxyCompactList}\small\item\em Default dynamic memory handle. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+
+
+\subsubsection{Detailed Description}
+Memory Management A\-P\-I. \begin{DoxyAuthor}{Author}
+Nenad Radulovic 
+\end{DoxyAuthor}
