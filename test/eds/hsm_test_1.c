@@ -286,7 +286,6 @@ static naction state_s211(struct nsm * sm, const nevent * event)
 int main(void)
 {
 	struct nevent 				event;
-	unsigned int				counter = 0;
 	int							c;
 
 	nsm_init(&test_fsm, &test_fsm_define);
@@ -299,7 +298,7 @@ int main(void)
 	printf("\n\n- press 's' to quit:\n");
 
 	while ((c = getchar()) != 'q') {
-		event.id = c;
+		event.id = (uint_fast16_t)c;
 
 		printf("->signal: %c\n", c);
 
@@ -317,5 +316,11 @@ PORT_C_NORETURN void hook_at_assert(
     const PORT_C_ROM char *     expr,
     const PORT_C_ROM char *     msg)
 {
+	(void)component_info;
+	(void)fn;
+	(void)line;
+	(void)expr;
+	(void)msg;
+
 	for (;;);
 }
