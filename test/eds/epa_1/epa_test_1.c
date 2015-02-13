@@ -11,7 +11,7 @@
 #include <stdlib.h>
 #include <unistd.h>
 
-#include "mem/mem_class.h"
+#include "mem/heap.h"
 #include "eds/event.h"
 #include "eds/epa.h"
 
@@ -30,15 +30,15 @@ struct test_fsm_wspace {
 static struct test_fsm_wspace   g_test_fsm_wspace;
 static struct nevent *   		g_working_fifo_storage[10];
 static struct nepa 				g_test_epa;
-static struct nmem 				g_event_mem;
+static struct nheap				g_event_mem;
 static uint8_t 					g_event_mem_storage[1024];
-static pthread_t				g_runner;
+
 
 static const struct nepa_define g_test_epa_define =
 {
 	.sm.wspace 				= &g_test_fsm_wspace,
 	.sm.init_state      	= state_init,
-	.sm.type				= NTYPE_HSM,
+	.sm.type				= NSM_TYPE_HSM,
 	.working_fifo.storage	= g_working_fifo_storage,
 	.working_fifo.size		= sizeof(g_working_fifo_storage),
 	.thread.name 			= "test EPA",
@@ -306,13 +306,15 @@ static void * runner(void * arg)
 
 int main(void)
 {
+	static pthread_t			g_runner;
 	int							c;
 	int 						err;
 
+
+	nheap_init(&g_event_mem, g_event_mem_storage, sizeof(g_event_mem_storage));
+	nevent_register_mem(&g_event_mem.mem_class);
+
 	nsched_init();
-	nheap_init(&g_event_mem.handle.heap_mem, g_event_mem_storage, sizeof(g_event_mem_storage));
-	nmem_bind(&g_event_mem, &g_heap_mem_class);
-	nevent_register_mem(&g_event_mem);
 	nepa_init(&g_test_epa, &g_test_epa_define);
 
 
@@ -326,7 +328,7 @@ int main(void)
 	while ((c = getchar()) != 'q') {
 		struct nevent *			event;
 
-		event = nevent_create(sizeof(struct nevent), c);
+		event = nevent_create(sizeof(struct nevent), (uint16_t)c);
 
 		printf("->signal: %c\n", c);
 
