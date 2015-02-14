@@ -1,9 +1,26 @@
 /*
- * fsm_test_1.c
+ * This file is part of Neon.
  *
- *  Created on: 14 Dec 2014
- *      Author: nenad
+ * Copyright (C) 2010 - 2015 Nenad Radulovic
+ *
+ * Neon is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Lesser General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * Neon is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public License
+ * along with Neon.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ * web site:    http://github.com/nradulovic
+ * e-mail  :    nenad.b.radulovic@gmail.com
  */
+
+/*=========================================================  INCLUDE FILES  ==*/
 
 #include <stdbool.h>
 #include <stdio.h>
@@ -11,6 +28,16 @@
 #include "shared/debug.h"
 #include "eds/event.h"
 #include "eds/smp.h"
+
+/*=========================================================  LOCAL MACRO's  ==*/
+/*======================================================  LOCAL DATA TYPES  ==*/
+
+struct test_fsm_wspace
+{
+	bool			is_foo;
+};
+
+/*=============================================  LOCAL FUNCTION PROTOTYPES  ==*/
 
 static naction state_init(struct nsm * sm, const nevent * event);
 static naction state_s(struct nsm * sm, const nevent * event);
@@ -20,19 +47,20 @@ static naction state_s11(struct nsm * sm, const nevent * event);
 static naction state_s21(struct nsm * sm, const nevent * event);
 static naction state_s211(struct nsm * sm, const nevent * event);
 
-struct test_fsm_wspace {
-	bool			is_foo;
-};
+/*=======================================================  LOCAL VARIABLES  ==*/
 
-static struct nsm test_fsm;
-static struct test_fsm_wspace test_fsm_wspace;
+static struct nsm 				g_test_fsm;
+static struct test_fsm_wspace 	g_test_fsm_wspace;
 
-
-static const struct nsm_define test_fsm_define = {
-	.wspace 	= &test_fsm_wspace,
-	.type   	= NTYPE_HSM,
+static const struct nsm_define 	g_test_fsm_define =
+{
+	.wspace 	= &g_test_fsm_wspace,
+	.type   	= NSM_TYPE_HSM,
 	.init_state = &state_init
 };
+
+/*======================================================  GLOBAL VARIABLES  ==*/
+/*============================================  LOCAL FUNCTION DEFINITIONS  ==*/
 
 static naction state_init(struct nsm * sm, const nevent * event)
 {
@@ -283,18 +311,23 @@ static naction state_s211(struct nsm * sm, const nevent * event)
 	}
 }
 
+/*===================================  GLOBAL PRIVATE FUNCTION DEFINITIONS  ==*/
+/*====================================  GLOBAL PUBLIC FUNCTION DEFINITIONS  ==*/
+
 int main(void)
 {
 	struct nevent 				event;
 	int							c;
 
-	nsm_init(&test_fsm, &test_fsm_define);
-	nsm_dispatch(&test_fsm, nsmp_event(NSMP_INIT));
+	nsm_init(&g_test_fsm, &g_test_fsm_define);
+	nsm_dispatch(&g_test_fsm, nsmp_event(NSMP_INIT));
 
 	event.attrib = 0;
 	event.ref    = 0;
 	event.mem    = NULL;
+#if (CONFIG_API_VALIDATION == 1)
 	event.signature = NEVENT_SIGNATURE;
+#endif
 	printf("\n\n- press 's' to quit:\n");
 
 	while ((c = getchar()) != 'q') {
@@ -302,7 +335,7 @@ int main(void)
 
 		printf("->signal: %c\n", c);
 
-		nsm_dispatch(&test_fsm, &event);
+		nsm_dispatch(&g_test_fsm, &event);
 		printf("\n");
 	}
 
@@ -324,3 +357,8 @@ PORT_C_NORETURN void hook_at_assert(
 
 	for (;;);
 }
+
+/*================================*//** @cond *//*==  CONFIGURATION ERRORS  ==*/
+/** @endcond *//***************************************************************
+ * END of main.c
+ ******************************************************************************/
