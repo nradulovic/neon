@@ -1,9 +1,26 @@
 /*
- * epa_test_1.c
+ * This file is part of Neon.
  *
- *  Created on: Feb 12, 2015
- *      Author: nenad
+ * Copyright (C) 2010 - 2015 Nenad Radulovic
+ *
+ * Neon is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Lesser General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * Neon is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public License
+ * along with Neon.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ * web site:    http://github.com/nradulovic
+ * e-mail  :    nenad.b.radulovic@gmail.com
  */
+
+/*=========================================================  INCLUDE FILES  ==*/
 
 #include <stdbool.h>
 #include <stdio.h>
@@ -15,6 +32,16 @@
 #include "eds/event.h"
 #include "eds/epa.h"
 
+/*=========================================================  LOCAL MACRO's  ==*/
+/*======================================================  LOCAL DATA TYPES  ==*/
+
+struct test_fsm_wspace
+{
+	bool			is_foo;
+};
+
+/*=============================================  LOCAL FUNCTION PROTOTYPES  ==*/
+
 static naction state_init(struct nsm * sm, const nevent * event);
 static naction state_s(struct nsm * sm, const nevent * event);
 static naction state_s1(struct nsm * sm, const nevent * event);
@@ -22,17 +49,15 @@ static naction state_s2(struct nsm * sm, const nevent * event);
 static naction state_s11(struct nsm * sm, const nevent * event);
 static naction state_s21(struct nsm * sm, const nevent * event);
 static naction state_s211(struct nsm * sm, const nevent * event);
+static void * runner(void * arg);
 
-struct test_fsm_wspace {
-	bool			is_foo;
-};
+/*=======================================================  LOCAL VARIABLES  ==*/
 
 static struct test_fsm_wspace   g_test_fsm_wspace;
 static struct nevent *   		g_working_fifo_storage[10];
 static struct nepa 				g_test_epa;
 static struct nheap				g_event_mem;
 static uint8_t 					g_event_mem_storage[1024];
-
 
 static const struct nepa_define g_test_epa_define =
 {
@@ -44,6 +69,9 @@ static const struct nepa_define g_test_epa_define =
 	.thread.name 			= "test EPA",
 	.thread.priority		= 10
 };
+
+/*======================================================  GLOBAL VARIABLES  ==*/
+/*============================================  LOCAL FUNCTION DEFINITIONS  ==*/
 
 static naction state_init(struct nsm * sm, const nevent * event)
 {
@@ -303,6 +331,8 @@ static void * runner(void * arg)
 	return (NULL);
 }
 
+/*===================================  GLOBAL PRIVATE FUNCTION DEFINITIONS  ==*/
+/*====================================  GLOBAL PUBLIC FUNCTION DEFINITIONS  ==*/
 
 int main(void)
 {
@@ -357,3 +387,8 @@ PORT_C_NORETURN void hook_at_assert(
 
 	for (;;);
 }
+
+/*================================*//** @cond *//*==  CONFIGURATION ERRORS  ==*/
+/** @endcond *//***************************************************************
+ * END of main.c
+ ******************************************************************************/
