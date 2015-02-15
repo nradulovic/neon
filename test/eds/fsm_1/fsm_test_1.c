@@ -103,6 +103,7 @@ static naction state_inct(struct nsm * sm, const nevent * event)
 /*===================================  GLOBAL PRIVATE FUNCTION DEFINITIONS  ==*/
 /*====================================  GLOBAL PUBLIC FUNCTION DEFINITIONS  ==*/
 
+
 int main(void)
 {
 	struct nsm 					test_fsm;
@@ -118,6 +119,8 @@ int main(void)
 	return (0);
 }
 
+
+
 PORT_C_NORETURN void hook_at_assert(
     const PORT_C_ROM struct ncomponent_info * component_info,
     const PORT_C_ROM char *     fn,
@@ -126,6 +129,14 @@ PORT_C_NORETURN void hook_at_assert(
     const PORT_C_ROM char *     msg)
 {
 	for (;;);
+}
+
+
+
+void assert_failed(uint8_t* file, uint32_t line)
+{
+	(void)file;
+	(void)line;
 }
 
 /*================================*//** @cond *//*==  CONFIGURATION ERRORS  ==*/
