@@ -39,65 +39,65 @@ static naction state_inct(struct nsm * sm, const nevent * event);
 
 static naction state_init(struct nsm * sm, const nevent * event)
 {
-	switch (event->id) {
-		case NSMP_ENTRY: {
+    switch (event->id) {
+        case NSMP_ENTRY: {
 
-			return (NACTION_HANDLED);
-		}
-		case NSMP_EXIT: {
+            return (NACTION_HANDLED);
+        }
+        case NSMP_EXIT: {
 
-			return (NACTION_HANDLED);
-		}
-		case NSMP_INIT: {
+            return (NACTION_HANDLED);
+        }
+        case NSMP_INIT: {
 
-			return (naction_transit_to(sm, &state_actv));
-		}
-		default : {
-			return (NACTION_IGNORED);
-		}
-	}
+            return (naction_transit_to(sm, &state_actv));
+        }
+        default : {
+            return (NACTION_IGNORED);
+        }
+    }
 }
 
 static naction state_actv(struct nsm * sm, const nevent * event)
 {
-	switch (event->id) {
-		case NSMP_ENTRY: {
+    switch (event->id) {
+        case NSMP_ENTRY: {
 
-			return (NACTION_HANDLED);
-		}
-		case NSMP_EXIT: {
+            return (NACTION_HANDLED);
+        }
+        case NSMP_EXIT: {
 
-			return (NACTION_HANDLED);
-		}
-		case NSMP_INIT: {
+            return (NACTION_HANDLED);
+        }
+        case NSMP_INIT: {
 
-			return (naction_transit_to(sm, &state_inct));
-		}
-		default : {
-			return (NACTION_IGNORED);
-		}
-	}
+            return (naction_transit_to(sm, &state_inct));
+        }
+        default : {
+            return (NACTION_IGNORED);
+        }
+    }
 }
 
 static naction state_inct(struct nsm * sm, const nevent * event)
 {
-	switch (event->id) {
-		case NSMP_ENTRY: {
+    switch (event->id) {
+        case NSMP_ENTRY: {
 
-			return (NACTION_HANDLED);
-		}
-		case NSMP_EXIT: {
+            return (NACTION_HANDLED);
+        }
+        case NSMP_EXIT: {
 
-			return (NACTION_HANDLED);
-		}
-		case NSMP_INIT: {
+            return (NACTION_HANDLED);
+        }
+        case NSMP_INIT: {
 
-			return (naction_transit_to(sm, &state_actv));
-		}
-		default : {
-			return (NACTION_IGNORED);
-		}
-	}
+            return (naction_transit_to(sm, &state_actv));
+        }
+        default : {
+            return (NACTION_IGNORED);
+        }
+    }
 }
 
 /*===================================  GLOBAL PRIVATE FUNCTION DEFINITIONS  ==*/
@@ -106,17 +106,17 @@ static naction state_inct(struct nsm * sm, const nevent * event)
 
 int main(void)
 {
-	struct nsm 					test_fsm;
-	const struct nsm_define 	test_fsm_define =
-	{
-		.wspace 	= NULL,
-		.type   	= NSM_TYPE_FSM,
-		.init_state = &state_init
-	};
-	nsm_init(&test_fsm, &test_fsm_define);
-	nsm_dispatch(&test_fsm, nsmp_event(NSMP_INIT));
+    struct nsm                  test_fsm;
+    const struct nsm_define     test_fsm_define =
+    {
+        .wspace     = NULL,
+        .type       = NSM_TYPE_FSM,
+        .init_state = &state_init
+    };
+    nsm_init(&test_fsm, &test_fsm_define);
+    nsm_dispatch(&test_fsm, nsmp_event(NSMP_INIT));
 
-	return (0);
+    return (0);
 }
 
 
@@ -128,15 +128,15 @@ PORT_C_NORETURN void hook_at_assert(
     const PORT_C_ROM char *     expr,
     const PORT_C_ROM char *     msg)
 {
-	for (;;);
+    for (;;);
 }
 
 
 
 void assert_failed(uint8_t* file, uint32_t line)
 {
-	(void)file;
-	(void)line;
+    (void)file;
+    (void)line;
 }
 
 /*================================*//** @cond *//*==  CONFIGURATION ERRORS  ==*/

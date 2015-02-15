@@ -37,158 +37,158 @@
 /*===================================  GLOBAL PRIVATE FUNCTION DEFINITIONS  ==*/
 /*====================================  GLOBAL PUBLIC FUNCTION DEFINITIONS  ==*/
 
-#define nequeu_free(equeue)				nqueue_free(&(equeue)->queue)
+#define nequeu_free(equeue)             nqueue_free(&(equeue)->queue)
 
 int main(void)
 {
-	volatile size_t				o_free;
-	volatile const struct nevent *    o_event;
-	volatile bool				o_is_empty;
-	volatile bool 				o_is_full;
+    volatile size_t             o_free;
+    volatile const struct nevent *    o_event;
+    volatile bool               o_is_empty;
+    volatile bool               o_is_full;
 
-	struct nevent *				equeue_storage[4];
-	struct nequeue				equeue;
-	const struct nevent			event[4] =
-	{
-		{
-			.id = 1
-		}, {
-			.id = 2
-		}, {
-			.id = 3
-		}, {
-			.id = 4
-		}
-	};
-	const struct nequeue_define equeue_define =
-	{
-		equeue_storage,
-		sizeof(equeue_storage)
-	};
-	nequeue_init(&equeue, &equeue_define);
+    struct nevent *             equeue_storage[4];
+    struct nequeue              equeue;
+    const struct nevent         event[4] =
+    {
+        {
+            .id = 1
+        }, {
+            .id = 2
+        }, {
+            .id = 3
+        }, {
+            .id = 4
+        }
+    };
+    const struct nequeue_define equeue_define =
+    {
+        equeue_storage,
+        sizeof(equeue_storage)
+    };
+    nequeue_init(&equeue, &equeue_define);
 
-	/*
-	 * 1: 	put fifo(1),
-	 * 		o_free = 3,
-	 * 		o_is_empty = false,
-	 * 		o_is_full = false,
-	 * 		get() = 1,
-	 */
-	nequeue_put_fifo(&equeue, &event[0]);
-	o_free  	= nequeu_free(&equeue);
-	o_is_empty	= nequeue_is_empty(&equeue);
-	o_is_full   = nequeue_is_full(&equeue);
-	o_event 	= nequeue_get(&equeue);
+    /*
+     * 1:   put fifo(1),
+     *      o_free = 3,
+     *      o_is_empty = false,
+     *      o_is_full = false,
+     *      get() = 1,
+     */
+    nequeue_put_fifo(&equeue, &event[0]);
+    o_free      = nequeu_free(&equeue);
+    o_is_empty  = nequeue_is_empty(&equeue);
+    o_is_full   = nequeue_is_full(&equeue);
+    o_event     = nequeue_get(&equeue);
 
-	/*
-	 * 2: 	put lifo(2),
-	 * 		o_free = 3,
-	 * 		o_is_empty = false,
-	 * 		o_is_full = false,
-	 * 		get() = 2
-	 */
-	nequeue_put_lifo(&equeue, &event[1]);
-	o_free  	= nequeu_free(&equeue);
-	o_is_empty	= nequeue_is_empty(&equeue);
-	o_is_full   = nequeue_is_full(&equeue);
-	o_event 	= nequeue_get(&equeue);
+    /*
+     * 2:   put lifo(2),
+     *      o_free = 3,
+     *      o_is_empty = false,
+     *      o_is_full = false,
+     *      get() = 2
+     */
+    nequeue_put_lifo(&equeue, &event[1]);
+    o_free      = nequeu_free(&equeue);
+    o_is_empty  = nequeue_is_empty(&equeue);
+    o_is_full   = nequeue_is_full(&equeue);
+    o_event     = nequeue_get(&equeue);
 
-	/*
-	 * 3: 	o_free = 4,
-	 * 		o_is_empty = true,
-	 * 		o_is_full = false,
-	 */
-	o_free  	= nequeu_free(&equeue);
-	o_is_empty	= nequeue_is_empty(&equeue);
-	o_is_full   = nequeue_is_full(&equeue);
+    /*
+     * 3:   o_free = 4,
+     *      o_is_empty = true,
+     *      o_is_full = false,
+     */
+    o_free      = nequeu_free(&equeue);
+    o_is_empty  = nequeue_is_empty(&equeue);
+    o_is_full   = nequeue_is_full(&equeue);
 
-	/*
-	 * 4:	put_fifo(1), put_fifo(2), put_fifo(3), put_fifo(4),
-	 * 		o_free = 0,
-	 * 		o_is_empty = false,
-	 * 		o_is_full = true,
-	 */
-	nequeue_put_fifo(&equeue, &event[0]);
-	nequeue_put_fifo(&equeue, &event[1]);
-	nequeue_put_fifo(&equeue, &event[2]);
-	nequeue_put_fifo(&equeue, &event[3]);
-	o_free  	= nequeu_free(&equeue);
-	o_is_empty	= nequeue_is_empty(&equeue);
-	o_is_full   = nequeue_is_full(&equeue);
+    /*
+     * 4:   put_fifo(1), put_fifo(2), put_fifo(3), put_fifo(4),
+     *      o_free = 0,
+     *      o_is_empty = false,
+     *      o_is_full = true,
+     */
+    nequeue_put_fifo(&equeue, &event[0]);
+    nequeue_put_fifo(&equeue, &event[1]);
+    nequeue_put_fifo(&equeue, &event[2]);
+    nequeue_put_fifo(&equeue, &event[3]);
+    o_free      = nequeu_free(&equeue);
+    o_is_empty  = nequeue_is_empty(&equeue);
+    o_is_full   = nequeue_is_full(&equeue);
 
-	/*
-	 * 5:   get() = 1, get() = 2, get() = 3, get() = 4
-	 * 		o_free = 4,
-	 * 		o_is_empty = true,
-	 * 		o_is_full = false,
-	 */
-	o_event 	= nequeue_get(&equeue);
-	o_event 	= nequeue_get(&equeue);
-	o_event 	= nequeue_get(&equeue);
-	o_event 	= nequeue_get(&equeue);
-	o_free  	= nequeu_free(&equeue);
-	o_is_empty	= nequeue_is_empty(&equeue);
-	o_is_full   = nequeue_is_full(&equeue);
+    /*
+     * 5:   get() = 1, get() = 2, get() = 3, get() = 4
+     *      o_free = 4,
+     *      o_is_empty = true,
+     *      o_is_full = false,
+     */
+    o_event     = nequeue_get(&equeue);
+    o_event     = nequeue_get(&equeue);
+    o_event     = nequeue_get(&equeue);
+    o_event     = nequeue_get(&equeue);
+    o_free      = nequeu_free(&equeue);
+    o_is_empty  = nequeue_is_empty(&equeue);
+    o_is_full   = nequeue_is_full(&equeue);
 
-	/*
-	 * 6:   put_fifo(1), put_lifo(4),
-	 * 		get() = 4, get() = 1,
-	 * 		o_free = 4,
-	 * 		o_is_empty = true,
-	 * 		o_is_full = false,
-	 */
-	nequeue_put_fifo(&equeue, &event[0]);
-	nequeue_put_lifo(&equeue, &event[3]);
-	o_event 	= nequeue_get(&equeue);
-	o_event 	= nequeue_get(&equeue);
-	o_free  	= nequeu_free(&equeue);
-	o_is_empty	= nequeue_is_empty(&equeue);
-	o_is_full   = nequeue_is_full(&equeue);
+    /*
+     * 6:   put_fifo(1), put_lifo(4),
+     *      get() = 4, get() = 1,
+     *      o_free = 4,
+     *      o_is_empty = true,
+     *      o_is_full = false,
+     */
+    nequeue_put_fifo(&equeue, &event[0]);
+    nequeue_put_lifo(&equeue, &event[3]);
+    o_event     = nequeue_get(&equeue);
+    o_event     = nequeue_get(&equeue);
+    o_free      = nequeu_free(&equeue);
+    o_is_empty  = nequeue_is_empty(&equeue);
+    o_is_full   = nequeue_is_full(&equeue);
 
-	/*
-	 * 7:   put_fifo(1), put_fifo(2), put_fifo(3), put_lifo(4),
-	 * 		get() = 4, get() = 1, get() = 2, get() = 3,
-	 * 		o_free = 4,
-	 * 		o_is_empty = true,
-	 * 		o_is_full = false,
-	 */
-	nequeue_put_fifo(&equeue, &event[0]);
-	nequeue_put_fifo(&equeue, &event[1]);
-	nequeue_put_fifo(&equeue, &event[2]);
-	nequeue_put_lifo(&equeue, &event[3]);
-	o_event 	= nequeue_get(&equeue);
-	o_event 	= nequeue_get(&equeue);
-	o_event 	= nequeue_get(&equeue);
-	o_event 	= nequeue_get(&equeue);
-	o_free  	= nequeu_free(&equeue);
-	o_is_empty	= nequeue_is_empty(&equeue);
-	o_is_full   = nequeue_is_full(&equeue);
+    /*
+     * 7:   put_fifo(1), put_fifo(2), put_fifo(3), put_lifo(4),
+     *      get() = 4, get() = 1, get() = 2, get() = 3,
+     *      o_free = 4,
+     *      o_is_empty = true,
+     *      o_is_full = false,
+     */
+    nequeue_put_fifo(&equeue, &event[0]);
+    nequeue_put_fifo(&equeue, &event[1]);
+    nequeue_put_fifo(&equeue, &event[2]);
+    nequeue_put_lifo(&equeue, &event[3]);
+    o_event     = nequeue_get(&equeue);
+    o_event     = nequeue_get(&equeue);
+    o_event     = nequeue_get(&equeue);
+    o_event     = nequeue_get(&equeue);
+    o_free      = nequeu_free(&equeue);
+    o_is_empty  = nequeue_is_empty(&equeue);
+    o_is_full   = nequeue_is_full(&equeue);
 
-	/*
-	 * 8:   put_lifo(1), put_lifo(2), put_lifo(3), put_lifo(4),
-	 * 		get() = 4, get() = 3, get() = 2, get() = 1,
-	 * 		o_free = 4,
-	 * 		o_is_empty = true,
-	 * 		o_is_full = false,
-	 */
-	nequeue_put_lifo(&equeue, &event[0]);
-	nequeue_put_lifo(&equeue, &event[1]);
-	nequeue_put_lifo(&equeue, &event[2]);
-	nequeue_put_lifo(&equeue, &event[3]);
-	o_event 	= nequeue_get(&equeue);
-	o_event 	= nequeue_get(&equeue);
-	o_event 	= nequeue_get(&equeue);
-	o_event 	= nequeue_get(&equeue);
-	o_free  	= nequeu_free(&equeue);
-	o_is_empty	= nequeue_is_empty(&equeue);
-	o_is_full   = nequeue_is_full(&equeue);
+    /*
+     * 8:   put_lifo(1), put_lifo(2), put_lifo(3), put_lifo(4),
+     *      get() = 4, get() = 3, get() = 2, get() = 1,
+     *      o_free = 4,
+     *      o_is_empty = true,
+     *      o_is_full = false,
+     */
+    nequeue_put_lifo(&equeue, &event[0]);
+    nequeue_put_lifo(&equeue, &event[1]);
+    nequeue_put_lifo(&equeue, &event[2]);
+    nequeue_put_lifo(&equeue, &event[3]);
+    o_event     = nequeue_get(&equeue);
+    o_event     = nequeue_get(&equeue);
+    o_event     = nequeue_get(&equeue);
+    o_event     = nequeue_get(&equeue);
+    o_free      = nequeu_free(&equeue);
+    o_is_empty  = nequeue_is_empty(&equeue);
+    o_is_full   = nequeue_is_full(&equeue);
 
-	(void)o_free;
-	(void)o_event;
-	(void)o_is_empty;
-	(void)o_is_full;
+    (void)o_free;
+    (void)o_event;
+    (void)o_is_empty;
+    (void)o_is_full;
 
-	return (0);
+    return (0);
 }
 
 PORT_C_NORETURN void hook_at_assert(
@@ -198,7 +198,7 @@ PORT_C_NORETURN void hook_at_assert(
     const PORT_C_ROM char *     expr,
     const PORT_C_ROM char *     msg)
 {
-	for (;;);
+    for (;;);
 }
 
 /*================================*//** @cond *//*==  CONFIGURATION ERRORS  ==*/

@@ -55,7 +55,7 @@ int main(
     esHeapMemFree(&myMem, alloc2);
     esHeapMemFree(&myMem, alloc3);
 
-	/* prim condition */
+    /* prim condition */
     esHeapMemAlloc(&myMem, 2*8, &alloc1);
     esHeapMemAlloc(&myMem, 3*8, &alloc2);
     /* sec condition */

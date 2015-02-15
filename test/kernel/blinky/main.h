@@ -22,7 +22,7 @@
  * e-mail  :    blueskyniss@gmail.com
  *//***********************************************************************//**
  * @file
- * @author  	nenad
+ * @author      nenad
  * @brief       Interface of main.
  * @defgroup    def_group Group name
  * @brief       Group brief
