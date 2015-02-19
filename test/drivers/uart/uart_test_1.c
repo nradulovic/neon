@@ -35,13 +35,13 @@ static void system_clock_config(void);
 static void error_handler(void);
 
 static void reader(
-    struct nuart_driver *       uart,
+    struct nuart_drv *       uart,
     enum nerror                 error,
     void *                      buffer,
     size_t                      size);
 
 static void writer(
-    struct nuart_driver *       uart,
+    struct nuart_drv *       uart,
     enum nerror                 error,
     const void *                buffer,
     size_t                      size);
@@ -101,7 +101,7 @@ static void error_handler(void)
 }
 
 static void reader(
-    struct nuart_driver *       uart,
+    struct nuart_drv *       uart,
     enum nerror                 error,
     void *                      buffer,
     size_t                      size)
@@ -110,7 +110,7 @@ static void reader(
 }
 
 static void writer(
-    struct nuart_driver *       uart,
+    struct nuart_drv *       uart,
     enum nerror                 error,
     const void *                buffer,
     size_t                      size)
@@ -124,7 +124,7 @@ static void writer(
 
 int main(void)
 {
-    struct nuart_driver *       uart;
+    struct nuart_drv *       uart;
     struct nuart_config         config =
     {
         .flags          =   NUART_MODE_RX_TX  |
