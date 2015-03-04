@@ -132,8 +132,6 @@ int main(void)
                             NUART_STOPBITS_1  |
                             NUART_WORDLENGTH_8,
         .baud_rate      = 9600,
-        .tx_gpio        = NGPIO_PIN_ID(NGPIOA, 2),
-        .rx_gpio        = NGPIO_PIN_ID(NGPIOA, 3),
     };
     const uint8_t               tx_data[] = "UART test data";
     uint8_t                     rx_data[sizeof(tx_data) + 1u];
