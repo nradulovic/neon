@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="12.0">
+  <zoom_level>10</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>180</x>
+      <y>120</y>
+      <w>60</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>type</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Note</type>
+    <coordinates>
+      <x>120</x>
+      <y>200</y>
+      <w>510</w>
+      <h>170</h>
+    </coordinates>
+    <panel_attributes>--
+*Frame description:*
+-
+Field      Size      Description
+RID        2 bytes   Record Identifier
+type       2 bytes   Type of log message
+timestamp  4 bytes   Timestamp of the log message creation
+msg num    4 bytes   Number of the message
+value      4 bytes   A value that describes a message</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>240</x>
+      <y>120</y>
+      <w>120</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>timestamp</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>120</x>
+      <y>120</y>
+      <w>60</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>bg=yellow
+RID</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>480</x>
+      <y>120</y>
+      <w>120</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>value</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>360</x>
+      <y>120</y>
+      <w>120</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>msg num</panel_attributes>
+    <additional_attributes/>
+  </element>
+</diagram>
