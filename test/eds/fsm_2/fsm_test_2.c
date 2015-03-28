@@ -22,7 +22,7 @@
 
 /*=========================================================  INCLUDE FILES  ==*/
 
-#include "shared/debug.h"
+#include "base/shared/debug.h"
 #include "eds/event.h"
 #include "eds/smp.h"
 
@@ -143,11 +143,11 @@ int main(void)
 }
 
 PORT_C_NORETURN void hook_at_assert(
-    const PORT_C_ROM struct ncomponent_info * component_info,
-    const PORT_C_ROM char *     fn,
+    const struct ncomponent_info * component_info,
+    const char *                fn,
     uint32_t                    line,
-    const PORT_C_ROM char *     expr,
-    const PORT_C_ROM char *     msg)
+    const char *                expr,
+    const char *                msg)
 {
     for (;;);
 }

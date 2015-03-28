@@ -23,9 +23,9 @@
 /*=========================================================  INCLUDE FILES  ==*/
 
 #include "shared/debug.h"
-#include "mcu/profile.h"
-#include "mcu/gpio.h"
-#include "mcu/uart.h"
+#include "port/peripheral.h"
+#include "port/gpio.h"
+#include "port/uart.h"
 
 /*=========================================================  LOCAL MACRO's  ==*/
 /*======================================================  LOCAL DATA TYPES  ==*/
@@ -142,7 +142,7 @@ int main(void)
     uart = nuart_open(&g_uart2, &config);
     nuart_set_reader(uart, reader);
     nuart_set_writer(uart, writer);
-    nuart_read_start(uart, rx_data, sizeof(tx_data), 0);
+    nuart_read_start(uart, rx_data, sizeof(tx_data));
     nuart_write_start(uart, tx_data, sizeof(tx_data));
 
     while (!g_is_received && !g_is_sent);
@@ -155,11 +155,11 @@ int main(void)
 
 
 PORT_C_NORETURN void hook_at_assert(
-    const PORT_C_ROM struct ncomponent_info * component_info,
-    const PORT_C_ROM char *     fn,
+    const struct ncomponent_info * component_info,
+    const char *                fn,
     uint32_t                    line,
-    const PORT_C_ROM char *     expr,
-    const PORT_C_ROM char *     msg)
+    const char *                expr,
+    const char *                msg)
 {
     for (;;);
 }
