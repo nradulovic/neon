@@ -1,7 +1,6 @@
-neon
-====
 
 Neon software components
+========================
 
 Main Neon components are:
 * base - contains portable system and bare minimum headers needed by all other
@@ -17,3 +16,5 @@ Main Neon components are:
     
 For more details about each software component please consult the README file 
 for the component you are interested in.
+
+
