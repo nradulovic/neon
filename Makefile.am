@@ -1,6 +1,12 @@
 AUTOMAKE_OPTIONS = foreign
+
+ACLOCAL_AMFLAGS = -I m4
+
 SUBDIRS = eds lib
 
-noinst_LIBRARIES = libneon.a
-libneon_a_SOURCES =
-libneon_a_LIBADD = eds/libeds.a lib/libneonlib.a
+lib_LTLIBRARIES = libneon.la
+libneon_la_SOURCES = 
+libneon_la_LIBADD = \
+	eds/libneoneds.la \
+	lib/libneonlib.la
+
