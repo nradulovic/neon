@@ -3,5 +3,10 @@ exec_prefix=@exec_prefix@
 libdir=@libdir@
 includedir=@includedir@
 
-Cflags: -I${includedir}
+Name: libneon
+Description: Neon, Event Processing Library
+URL: http://github.com/nradulovic/neon
+Version: @PACKAGE_VERSION@
+Cflags: -I${includedir}/neon
 Libs: -L${libdir} -lneon
+
