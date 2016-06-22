@@ -30,6 +30,6 @@ AC_TYPE_UINT8_T
 # Checks for library functions.
 AC_FUNC_ERROR_AT_LINE
 
-AC_CONFIG_FILES([Makefile])
+AC_CONFIG_FILES([Makefile neon.pc])
 AC_CONFIG_SUBDIRS([eds lib])
 AC_OUTPUT
