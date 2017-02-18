@@ -18,3 +18,9 @@ For more details about each software component please consult the README file
 for the component you are interested in.
 
 
+Support
+-------
+If you've found an error, please [file an issue](https://github.com/nradulovic/neon/issues/new).
+
+Patches are encouraged, and may be submitted by [forking this project](https://github.com/nradulovic/neon/fork) and
+submitting a pull request through GitHub. Please see [CONTRIBUTING.md](CONTRIBUTING.md) for more details.
