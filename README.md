@@ -17,6 +17,14 @@ For more details about each software component please consult the README file
 for the component you are interested in.
 
 
+Fetching sources
+----------------
+Neon sources consist of multiple git modules. To fetch all sources do the following:
+
+    git clone https://github.com/nradulovic/neon.git
+    cd neon
+    git submodule update --init --recursive
+
 Support
 -------
 If you've found an error, please [file an issue](https://github.com/nradulovic/neon/issues/new).
