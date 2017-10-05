@@ -47,5 +47,5 @@ If you've found an error, please `file an issue
 
 Patches are encouraged, and may be submitted by `forking this project 
 <https://github.com/nradulovic/neon/fork/>`_ and submitting
-a pull request through GitHub. Please see `CONTRIBUTING.md 
-<https://gitgub.com/nradulovic/neon/CONTRIBUTING.md/>`_ for more details.
+a pull request through GitHub. Please see `CONTRIBUTING.rst
+<https://github.com/nradulovic/neon/blob/master/CONTRIBUTING.rst/>`_ for more details.
