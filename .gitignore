@@ -48,4 +48,4 @@ Release/
 **/Makefile.in
 
 # Ignore doxygen built files
-doc/build/
+documentation/build/

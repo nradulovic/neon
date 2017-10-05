@@ -23,7 +23,6 @@ Main Neon components are:
 For more details about each software component please consult the README file 
 for the component you are interested in.
 
-
 Fetching sources
 ================
 
@@ -45,4 +44,5 @@ If you've found an error, please `file an issue
 Patches are encouraged, and may be submitted by `forking this project 
 <https://github.com/nradulovic/neon/fork/>`_ and submitting
 a pull request through GitHub. Please see `CONTRIBUTING.rst
-<https://github.com/nradulovic/neon/blob/master/CONTRIBUTING.rst/>`_ for more details.
+<https://github.com/nradulovic/neon/blob/master/CONTRIBUTING.rst/>`_ for more
+details.
