@@ -49,3 +49,4 @@ Release/
 
 # Ignore doxygen built files
 documentation/build/
+documentation/doxyfile_version

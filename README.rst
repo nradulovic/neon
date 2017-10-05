@@ -35,6 +35,18 @@ following:
     cd neon
     git submodule update --init --recursive
 
+Documentation
+=============
+
+To build doxygen based documentation:
+
+.. code:: bash
+    
+    cd scripts
+    ./build_docs.sh
+
+The outputs are in ``documentation/build`` folder.
+
 Support
 =======
 
