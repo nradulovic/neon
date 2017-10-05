@@ -3,8 +3,8 @@
    :backlinks: top
    :local:
 
-**Neon software components**
-============================
+Neon software components
+========================
 
 Main Neon components are:
 
