@@ -1,13 +1,11 @@
+**Neon software components**
 
 .. contents:: Table of contents
    :backlinks: top
       :local:
 
-Neon software components
-========================
-
 Structure
----------
+=========
 
 Main Neon components are:
 
@@ -28,7 +26,7 @@ for the component you are interested in.
 
 
 Fetching sources
-----------------
+================
 
 Neon sources consist of multiple git modules. To fetch all sources do the
 following:
@@ -40,7 +38,7 @@ following:
     git submodule update --init --recursive
 
 Support
--------
+=======
 
 If you've found an error, please `file an issue
 <https://github.com/nradulovic/neon/issues/new/>`_.
