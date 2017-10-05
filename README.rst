@@ -1,10 +1,10 @@
 
-Neon software components
-========================
-
 .. contents:: Table of contents
    :backlinks: top
       :local:
+
+Neon software components
+========================
 
 Structure
 ---------
