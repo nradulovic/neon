@@ -1,4 +1,3 @@
-
 PROJECT_NAME                    = "Neon Software Components"
 PROJECT_BRIEF                   = "Real-time software"
 INPUT                           = ../documentation/src
